@@ -1,3 +1,3 @@
 package com.veritm.innertube.models
 
-typealias YouTubeLocale = com.veritm.innertubex.models.YouTubeLocale
+typealias YouTubeLocale = com.metrolist.innertubex.models.YouTubeLocale

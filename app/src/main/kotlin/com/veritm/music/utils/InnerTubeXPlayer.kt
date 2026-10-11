@@ -6,23 +6,23 @@ import com.veritm.innertube.YouTube
 import com.veritm.innertube.models.Thumbnail
 import com.veritm.innertube.models.Thumbnails
 import com.veritm.innertube.models.response.PlayerResponse
-import com.veritm.innertubex.InnerTubeLogLevel
-import com.veritm.innertubex.InnerTubeLogger
-import com.veritm.innertubex.cipher.PlayerConfigRepository
-import com.veritm.innertubex.cipher.RemotePlayerConfigStore
-import com.veritm.innertubex.cipher.YouTubeCipherService
-import com.veritm.innertubex.extraction.AudioQuality as InnerTubeXAudioQuality
-import com.veritm.innertubex.extraction.ContentHints
-import com.veritm.innertubex.extraction.ExtractedStream
-import com.veritm.innertubex.extraction.InnerTubeExtractor
-import com.veritm.innertubex.extraction.PoTokenResult
-import com.veritm.innertubex.extraction.StreamResolveException
-import com.veritm.innertubex.extraction.TokenProvider
-import com.veritm.innertubex.extraction.TokenProviderCapabilities
-import com.veritm.innertubex.extraction.YtConfigParser
-import com.veritm.innertubex.extraction.YtConfigParserImpl
-import com.veritm.innertubex.extraction.generateClientPlaybackNonce
-import com.veritm.innertubex.extraction.strategy.PoTokenProviderKind
+import com.metrolist.innertubex.InnerTubeLogLevel
+import com.metrolist.innertubex.InnerTubeLogger
+import com.metrolist.innertubex.cipher.PlayerConfigRepository
+import com.metrolist.innertubex.cipher.RemotePlayerConfigStore
+import com.metrolist.innertubex.cipher.YouTubeCipherService
+import com.metrolist.innertubex.extraction.AudioQuality as InnerTubeXAudioQuality
+import com.metrolist.innertubex.extraction.ContentHints
+import com.metrolist.innertubex.extraction.ExtractedStream
+import com.metrolist.innertubex.extraction.InnerTubeExtractor
+import com.metrolist.innertubex.extraction.PoTokenResult
+import com.metrolist.innertubex.extraction.StreamResolveException
+import com.metrolist.innertubex.extraction.TokenProvider
+import com.metrolist.innertubex.extraction.TokenProviderCapabilities
+import com.metrolist.innertubex.extraction.YtConfigParser
+import com.metrolist.innertubex.extraction.YtConfigParserImpl
+import com.metrolist.innertubex.extraction.generateClientPlaybackNonce
+import com.metrolist.innertubex.extraction.strategy.PoTokenProviderKind
 import com.veritm.music.constants.AudioQuality
 import com.veritm.music.utils.potoken.PoTokenGenerator
 import kotlinx.coroutines.CancellationException
@@ -141,7 +141,7 @@ object InnerTubeXPlayer {
                 throw error
             } catch (error: Exception) {
                 logger.log(
-                    com.veritm.innertubex.InnerTubeLogEvent(
+                    com.metrolist.innertubex.InnerTubeLogEvent(
                         level = InnerTubeLogLevel.WARN,
                         tag = TAG,
                         message = "old cipher disposal failed",

@@ -97,7 +97,7 @@ import com.google.common.util.concurrent.MoreExecutors
 import com.veritm.innertube.YouTube
 import com.veritm.innertube.models.SongItem
 import com.veritm.innertube.models.WatchEndpoint
-import com.veritm.innertubex.extraction.ContentHints
+import com.metrolist.innertubex.extraction.ContentHints
 import com.veritm.lastfm.LastFM
 import com.veritm.music.MainActivity
 import com.veritm.music.R

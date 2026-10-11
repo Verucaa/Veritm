@@ -25,7 +25,7 @@ import coil3.request.CachePolicy
 import coil3.request.ImageRequest
 import com.veritm.innertube.YouTube
 import com.veritm.innertube.models.SongItem
-import com.veritm.innertubex.extraction.ContentHints
+import com.metrolist.innertubex.extraction.ContentHints
 import com.veritm.music.constants.AudioQuality
 import com.veritm.music.constants.AudioQualityKey
 import com.veritm.music.db.MusicDatabase
