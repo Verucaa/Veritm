@@ -5,6 +5,7 @@
 
 package com.vmusic.music.ui.component
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalViewConfiguration
@@ -30,6 +33,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import com.vmusic.music.ui.screens.Screens
+import com.vmusic.music.ui.theme.LocalGlassTokens
+import com.vmusic.music.ui.theme.glassSurface
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 
@@ -57,12 +62,13 @@ fun AppNavigationRail(
     onSearchLongClick: (() -> Unit)? = null,
     onHomeLongHold: (() -> Unit)? = null,
 ) {
-    val containerColor = if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer
+    val glass = LocalGlassTokens.current.enabled
+    val containerColor = if (glass) Color.Transparent else if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
 
     NavigationRail(
-        modifier = modifier,
+        modifier = if (glass) modifier.glassSurface(RectangleShape, strong = true) else modifier,
         containerColor = containerColor
     ) {
         Spacer(modifier = Modifier.weight(1f))
@@ -116,9 +122,14 @@ fun AppNavigationRail(
                 },
                 interactionSource = interactionSource,
                 icon = {
+                    val iconScale by animateFloatAsState(
+                        targetValue = if (isSelected) 1.15f else 1f,
+                        label = "navIconScale",
+                    )
                     Icon(
                         painter = painterResource(id = iconRes),
-                        contentDescription = stringResource(screen.titleId)
+                        contentDescription = stringResource(screen.titleId),
+                        modifier = Modifier.graphicsLayer { scaleX = iconScale; scaleY = iconScale },
                     )
                 }
             )
@@ -139,13 +150,14 @@ fun AppNavigationBar(
     onSearchLongClick: (() -> Unit)? = null,
     onHomeLongHold: (() -> Unit)? = null,
 ) {
-    val containerColor = if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer
+    val glass = LocalGlassTokens.current.enabled
+    val containerColor = if (glass) Color.Transparent else if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer
     val contentColor = if (pureBlack) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
 
     NavigationBar(
-        modifier = modifier,
+        modifier = if (glass) modifier.glassSurface(RectangleShape, strong = true) else modifier,
         containerColor = containerColor,
         contentColor = contentColor
     ) {
@@ -198,9 +210,14 @@ fun AppNavigationBar(
                 },
                 interactionSource = interactionSource,
                 icon = {
+                    val iconScale by animateFloatAsState(
+                        targetValue = if (isSelected) 1.15f else 1f,
+                        label = "navIconScale",
+                    )
                     Icon(
                         painter = painterResource(id = iconRes),
-                        contentDescription = stringResource(screen.titleId)
+                        contentDescription = stringResource(screen.titleId),
+                        modifier = Modifier.graphicsLayer { scaleX = iconScale; scaleY = iconScale },
                     )
                 },
                 label = if (!slimNav) {
