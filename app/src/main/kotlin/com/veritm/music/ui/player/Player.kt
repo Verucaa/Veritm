@@ -322,6 +322,7 @@ fun BottomSheetPlayer(
     val currentSong by playerConnection.currentSong.collectAsStateWithLifecycle(initialValue = null)
     val automix by playerConnection.service.automixItems.collectAsStateWithLifecycle()
     val repeatMode by playerConnection.repeatMode.collectAsStateWithLifecycle()
+    val shuffleModeEnabled by playerConnection.shuffleModeEnabled.collectAsStateWithLifecycle()
     val canSkipPrevious by playerConnection.canSkipPrevious.collectAsStateWithLifecycle()
     val canSkipNext by playerConnection.canSkipNext.collectAsStateWithLifecycle()
     val isMuted by playerConnection.isMuted.collectAsStateWithLifecycle()
@@ -1528,6 +1529,12 @@ fun BottomSheetPlayer(
                 exit = shrinkVertically(shrinkTowards = Alignment.Top) + slideOutVertically(targetOffsetY = { it }) + fadeOut(),
             ) {
                 Column {
+                    PlayerViewToggle(
+                        showLyrics = showInlineLyrics,
+                        onSelectAlbum = { showInlineLyrics = false },
+                        onSelectLyrics = { showInlineLyrics = true },
+                    )
+                    Spacer(Modifier.height(16.dp))
                     if (useNewPlayerDesign) {
                         Row(
                             horizontalArrangement = Arrangement.Center,
@@ -1844,6 +1851,19 @@ fun BottomSheetPlayer(
                                 )
                             }
                         }
+                    }
+                    if (useNewPlayerDesign) {
+                        Spacer(Modifier.height(16.dp))
+                        PlayerExtraControls(
+                            shuffleEnabled = shuffleModeEnabled,
+                            repeatMode = repeatMode,
+                            enabled = !isListenTogetherGuest,
+                            onToggleShuffle = {
+                                playerConnection.player.shuffleModeEnabled =
+                                    !playerConnection.player.shuffleModeEnabled
+                            },
+                            onCycleRepeat = { playerConnection.player.toggleRepeatMode() },
+                        )
                     }
                 }
             }
@@ -2185,6 +2205,128 @@ private fun PlayerMoreMenuButton(
             painter = painterResource(R.drawable.more_horiz),
             contentDescription = null,
             colorFilter = ColorFilter.tint(iconButtonColor),
+        )
+    }
+}
+
+@Composable
+private fun PlayerViewToggle(
+    showLyrics: Boolean,
+    onSelectAlbum: () -> Unit,
+    onSelectLyrics: () -> Unit,
+) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = PlayerHorizontalPadding),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .clip(RoundedCornerShape(14.dp))
+                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                .padding(4.dp),
+        ) {
+            PlayerToggleSegment(
+                selected = !showLyrics,
+                icon = R.drawable.album,
+                label = stringResource(R.string.player_tab_album),
+                onClick = onSelectAlbum,
+            )
+            PlayerToggleSegment(
+                selected = showLyrics,
+                icon = R.drawable.lyrics,
+                label = stringResource(R.string.player_tab_lyrics),
+                onClick = onSelectLyrics,
+            )
+        }
+    }
+}
+
+@Composable
+private fun PlayerToggleSegment(
+    selected: Boolean,
+    icon: Int,
+    label: String,
+    onClick: () -> Unit,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .clip(RoundedCornerShape(10.dp))
+            .background(if (selected) MaterialTheme.colorScheme.primary else Color.Transparent)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 18.dp, vertical = 8.dp),
+    ) {
+        Icon(
+            painter = painterResource(icon),
+            contentDescription = null,
+            tint = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(16.dp),
+        )
+        Spacer(Modifier.width(8.dp))
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelLarge,
+            color = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
+@Composable
+private fun PlayerExtraControls(
+    shuffleEnabled: Boolean,
+    repeatMode: Int,
+    enabled: Boolean,
+    onToggleShuffle: () -> Unit,
+    onCycleRepeat: () -> Unit,
+) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = PlayerHorizontalPadding),
+    ) {
+        PlayerExtraButton(
+            icon = if (shuffleEnabled) R.drawable.shuffle_on else R.drawable.shuffle,
+            active = shuffleEnabled,
+            enabled = enabled,
+            onClick = onToggleShuffle,
+        )
+        Spacer(Modifier.width(20.dp))
+        PlayerExtraButton(
+            icon = if (repeatMode == Player.REPEAT_MODE_ONE) R.drawable.repeat_one else R.drawable.repeat,
+            active = repeatMode != Player.REPEAT_MODE_OFF,
+            enabled = enabled,
+            onClick = onCycleRepeat,
+        )
+    }
+}
+
+@Composable
+private fun PlayerExtraButton(
+    icon: Int,
+    active: Boolean,
+    enabled: Boolean,
+    onClick: () -> Unit,
+) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .size(44.dp)
+            .clip(RoundedCornerShape(14.dp))
+            .background(
+                if (active) MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
+                else MaterialTheme.colorScheme.surfaceContainerHigh,
+            ).clickable(enabled = enabled, onClick = onClick),
+    ) {
+        Icon(
+            painter = painterResource(icon),
+            contentDescription = null,
+            tint = if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(20.dp),
         )
     }
 }

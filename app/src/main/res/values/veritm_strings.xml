@@ -961,4 +961,6 @@
     <string name="greeting_afternoon">Good afternoon</string>
     <string name="greeting_evening">Good evening</string>
     <string name="greeting_night">Good night</string>
+    <string name="player_tab_album">Album</string>
+    <string name="player_tab_lyrics">Lyrics</string>
 </resources>
