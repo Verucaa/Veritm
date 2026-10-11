@@ -17,24 +17,7 @@ dependencyResolutionManagement {
     repositories {
         exclusiveContent {
             forRepository {
-                if (useMavenLocalInnerTubeX) {
-                    mavenLocal()
-                } else {
-                    // PERBAIKAN: Abaikan file .module dari JitPack yang rusak.
-                    // JitPack mempublikasikan innertubex sebagai KMP dengan metadata
-                    // Gradle Module Metadata yang tidak lengkap, sehingga Gradle
-                    // memilih varian iosArm64/iosSimulatorArm64 alih-alih androidJvm.
-                    // Dengan metadataSources { mavenPom(); artifact() }, kita
-                    // memaksa resolusi gaya Maven klasik (POM + AAR).
-                    maven {
-                        url = uri("https://jitpack.io")
-                        metadataSources {
-                            mavenPom()
-                            artifact()
-                            ignoreGradleMetadataRedirection()
-                        }
-                    }
-                }
+                if (useMavenLocalInnerTubeX) mavenLocal() else maven("https://jitpack.io")
             }
             filter {
                 if (useMavenLocalInnerTubeX) {
