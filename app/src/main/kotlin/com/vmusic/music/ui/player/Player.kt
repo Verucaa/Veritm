@@ -177,6 +177,8 @@ import com.vmusic.music.ui.component.rememberBottomSheetState
 import com.vmusic.music.ui.menu.PlayerMenu
 import com.vmusic.music.ui.screens.settings.DarkMode
 import com.vmusic.music.ui.theme.PlayerColorExtractor
+import com.vmusic.music.ui.theme.LocalGlassTokens
+import com.vmusic.music.ui.theme.glassSurface
 import com.vmusic.music.ui.theme.PlayerSliderColors
 import com.vmusic.music.ui.utils.ShowMediaInfo
 import com.vmusic.music.ui.utils.ShowOffsetDialog
@@ -1146,6 +1148,10 @@ fun BottomSheetPlayer(
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(6.dp),
                         verticalAlignment = Alignment.CenterVertically,
+                        modifier =
+                            Modifier
+                                .glassSurface(RoundedCornerShape(24.dp))
+                                .padding(4.dp),
                     ) {
                         AnimatedContent(targetState = showInlineLyrics, label = "ShareButton") { showLyrics ->
                             if (showLyrics) {
@@ -1531,7 +1537,9 @@ fun BottomSheetPlayer(
                             modifier =
                                 Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = PlayerHorizontalPadding),
+                                    .padding(horizontal = PlayerHorizontalPadding)
+                                    .glassSurface(RoundedCornerShape(24.dp))
+                                    .padding(vertical = 6.dp),
                         ) {
                             val backInteractionSource = remember { MutableInteractionSource() }
                             val nextInteractionSource = remember { MutableInteractionSource() }
@@ -1712,7 +1720,9 @@ fun BottomSheetPlayer(
                             modifier =
                                 Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = PlayerHorizontalPadding),
+                                    .padding(horizontal = PlayerHorizontalPadding)
+                                    .glassSurface(RoundedCornerShape(24.dp))
+                                    .padding(vertical = 6.dp),
                         ) {
                             Box(modifier = Modifier.weight(1f)) {
                                 ResizableIconButton(
