@@ -1857,13 +1857,6 @@ fun BottomSheetPlayer(
                     if (useNewPlayerDesign) {
                         Spacer(Modifier.height(24.dp))
                         PlayerExtraControls(
-                            sleepTimerEnabled = sleepTimerEnabled,
-                            isFavorite =
-                                if (currentSong?.song?.isEpisode == true) {
-                                    currentSong?.song?.inLibrary != null
-                                } else {
-                                    currentSong?.song?.liked == true
-                                },
                             enabled = !isListenTogetherGuest,
                             onSleepTimer = {
                                 if (sleepTimerEnabled) {
@@ -1874,18 +1867,6 @@ fun BottomSheetPlayer(
                             },
                             onOpenQueue = { queueSheetState.expandSoft() },
                             onAddToPlaylist = { showChoosePlaylistDialog = true },
-                            onToggleLike = playerConnection::toggleLike,
-                            onShare = {
-                                mediaMetadata?.id?.let { id ->
-                                    val intent =
-                                        Intent().apply {
-                                            action = Intent.ACTION_SEND
-                                            type = "text/plain"
-                                            putExtra(Intent.EXTRA_TEXT, "https://music.youtube.com/watch?v=$id")
-                                        }
-                                    context.startActivity(Intent.createChooser(intent, null))
-                                }
-                            },
                         )
                     }
                 }
@@ -2034,6 +2015,40 @@ fun BottomSheetPlayer(
                 tint = TextBackgroundColor,
                 modifier = Modifier.size(24.dp),
             )
+        }
+
+        if (useNewPlayerDesign) {
+            mediaMetadata?.let { md ->
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier =
+                        Modifier
+                            .align(Alignment.TopEnd)
+                            .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal))
+                            .padding(end = 8.dp, top = 10.dp)
+                            .size(40.dp)
+                            .clip(RoundedCornerShape(24.dp))
+                            .clickable {
+                                menuState.show {
+                                    PlayerMenu(
+                                        mediaMetadata = md,
+                                        playerBottomSheetState = state,
+                                        onShowDetailsDialog = {
+                                            bottomSheetPageState.show { ShowMediaInfo(md.id) }
+                                        },
+                                        onDismiss = menuState::dismiss,
+                                    )
+                                }
+                            },
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.more_vert),
+                        contentDescription = null,
+                        tint = TextBackgroundColor,
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+            }
         }
 
         PlayerTopTabs(
@@ -2335,17 +2350,12 @@ private fun PlayerTab(
 
 @Composable
 private fun PlayerExtraControls(
-    sleepTimerEnabled: Boolean,
-    isFavorite: Boolean,
     enabled: Boolean,
     onSleepTimer: () -> Unit,
     onOpenQueue: () -> Unit,
     onAddToPlaylist: () -> Unit,
-    onToggleLike: () -> Unit,
-    onShare: () -> Unit,
 ) {
     Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
@@ -2353,33 +2363,20 @@ private fun PlayerExtraControls(
     ) {
         PlayerExtraButton(
             icon = R.drawable.bedtime,
-            active = sleepTimerEnabled,
             enabled = enabled,
             onClick = onSleepTimer,
         )
+        Spacer(modifier = Modifier.weight(1f))
         PlayerExtraButton(
             icon = R.drawable.queue_music,
-            active = false,
             enabled = true,
             onClick = onOpenQueue,
         )
+        Spacer(modifier = Modifier.width(8.dp))
         PlayerExtraButton(
             icon = R.drawable.playlist_add,
-            active = false,
             enabled = true,
             onClick = onAddToPlaylist,
-        )
-        PlayerExtraButton(
-            icon = if (isFavorite) R.drawable.favorite else R.drawable.favorite_border,
-            active = isFavorite,
-            enabled = true,
-            onClick = onToggleLike,
-        )
-        PlayerExtraButton(
-            icon = R.drawable.share,
-            active = false,
-            enabled = true,
-            onClick = onShare,
         )
     }
 }
@@ -2387,25 +2384,21 @@ private fun PlayerExtraControls(
 @Composable
 private fun PlayerExtraButton(
     icon: Int,
-    active: Boolean,
     enabled: Boolean,
     onClick: () -> Unit,
 ) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .size(40.dp)
-            .clip(RoundedCornerShape(13.dp))
-            .background(
-                if (active) MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
-                else MaterialTheme.colorScheme.surfaceContainerHigh,
-            ).clickable(enabled = enabled, onClick = onClick),
+            .size(44.dp)
+            .clip(RoundedCornerShape(50))
+            .clickable(enabled = enabled, onClick = onClick),
     ) {
         Icon(
             painter = painterResource(icon),
             contentDescription = null,
-            tint = if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.size(20.dp),
+            tint = Color.White,
+            modifier = Modifier.size(24.dp),
         )
     }
 }
