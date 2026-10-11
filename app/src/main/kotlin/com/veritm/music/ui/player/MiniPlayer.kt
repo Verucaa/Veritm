@@ -146,7 +146,7 @@ fun MiniPlayer(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
 ) {
-    val useNewMiniPlayerDesign by rememberPreference(UseNewMiniPlayerDesignKey, true)
+    val useNewMiniPlayerDesign by rememberPreference(UseNewMiniPlayerDesignKey, false)
 
     // Create stable progress state - doesn't cause recomposition on position changes
     val progressState = remember { ProgressState(positionState, durationState) }
@@ -705,6 +705,10 @@ private fun LegacyMiniPlayer(
 ) {
     val playerConnection = LocalPlayerConnection.current ?: return
     val pureBlack by rememberPreference(PureBlackMiniPlayerKey, defaultValue = false)
+    val miniPlayerBackground by rememberEnumPreference(
+        MiniPlayerBackgroundStyleKey,
+        defaultValue = MiniPlayerBackgroundStyle.BLUR,
+    )
 
     val playbackState by playerConnection.playbackState.collectAsState()
     val mediaMetadata by playerConnection.mediaMetadata.collectAsState()
@@ -835,6 +839,26 @@ private fun LegacyMiniPlayer(
                     }
                 },
     ) {
+        if (miniPlayerBackground == MiniPlayerBackgroundStyle.BLUR &&
+            mediaMetadata?.thumbnailUrl != null &&
+            android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S
+        ) {
+            AsyncImage(
+                model = mediaMetadata?.thumbnailUrl,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .blur(60.dp),
+            )
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.45f)),
+            )
+        }
+
         // Progress bar - uses drawWithContent to avoid recomposition
         Box(
             modifier =

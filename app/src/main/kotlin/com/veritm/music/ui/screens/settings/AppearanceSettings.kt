@@ -180,7 +180,7 @@ fun AppearanceSettings(
     val (useNewMiniPlayerDesign, onUseNewMiniPlayerDesignChange) =
         rememberPreference(
             UseNewMiniPlayerDesignKey,
-            defaultValue = true,
+            defaultValue = false,
         )
     val (hidePlayerThumbnail, onHidePlayerThumbnailChange) =
         rememberPreference(

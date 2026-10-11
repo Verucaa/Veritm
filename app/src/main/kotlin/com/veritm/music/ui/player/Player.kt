@@ -128,6 +128,7 @@ import androidx.media3.common.Player
 import androidx.media3.common.Player.STATE_ENDED
 import androidx.navigation.NavController
 import androidx.palette.graphics.Palette
+import androidx.room.withTransaction
 import com.veritm.music.LocalNavController
 import coil3.compose.AsyncImage
 import coil3.imageLoader
@@ -174,6 +175,7 @@ import com.veritm.music.ui.component.ResizableIconButton
 import com.veritm.music.ui.component.SquigglySlider
 import com.veritm.music.ui.component.WavySlider
 import com.veritm.music.ui.component.rememberBottomSheetState
+import com.veritm.music.ui.menu.AddToPlaylistDialog
 import com.veritm.music.ui.menu.PlayerMenu
 import com.veritm.music.ui.screens.settings.DarkMode
 import com.veritm.music.ui.theme.PlayerColorExtractor
@@ -236,7 +238,7 @@ fun BottomSheetPlayer(
 
     val playerBackground by rememberEnumPreference(
         key = PlayerBackgroundStyleKey,
-        defaultValue = PlayerBackgroundStyle.DEFAULT,
+        defaultValue = PlayerBackgroundStyle.BLUR,
     )
     val playerButtonsStyle by rememberEnumPreference(
         key = PlayerButtonsStyleKey,
@@ -740,6 +742,22 @@ fun BottomSheetPlayer(
 
     var showChoosePlaylistDialog by rememberSaveable {
         mutableStateOf(false)
+    }
+
+    val database = LocalDatabase.current
+
+    mediaMetadata?.let { metadata ->
+        AddToPlaylistDialog(
+            isVisible = showChoosePlaylistDialog,
+            onGetSong = {
+                database.withTransaction {
+                    insert(metadata)
+                }
+                listOf(metadata.id)
+            },
+            onGetSongIds = { listOf(metadata.id) },
+            onDismiss = { showChoosePlaylistDialog = false },
+        )
     }
 
     // Position update - only for local playback
@@ -1855,14 +1873,38 @@ fun BottomSheetPlayer(
                     if (useNewPlayerDesign) {
                         Spacer(Modifier.height(16.dp))
                         PlayerExtraControls(
+                            sleepTimerEnabled = sleepTimerEnabled,
                             shuffleEnabled = shuffleModeEnabled,
                             repeatMode = repeatMode,
                             enabled = !isListenTogetherGuest,
+                            onSleepTimer = {
+                                if (sleepTimerEnabled) {
+                                    playerConnection.service.sleepTimer?.clear()
+                                } else {
+                                    showSleepTimerDialog = true
+                                }
+                            },
+                            onOpenQueue = { queueSheetState.expandSoft() },
                             onToggleShuffle = {
                                 playerConnection.player.shuffleModeEnabled =
                                     !playerConnection.player.shuffleModeEnabled
                             },
                             onCycleRepeat = { playerConnection.player.toggleRepeatMode() },
+                            onAddToPlaylist = { showChoosePlaylistDialog = true },
+                            onMore = {
+                                menuState.show {
+                                    PlayerMenu(
+                                        mediaMetadata = mediaMetadata,
+                                        playerBottomSheetState = state,
+                                        onShowDetailsDialog = {
+                                            mediaMetadata?.id?.let {
+                                                bottomSheetPageState.show { ShowMediaInfo(it) }
+                                            }
+                                        },
+                                        onDismiss = menuState::dismiss,
+                                    )
+                                }
+                            },
                         )
                     }
                 }
@@ -2276,31 +2318,59 @@ private fun PlayerToggleSegment(
 
 @Composable
 private fun PlayerExtraControls(
+    sleepTimerEnabled: Boolean,
     shuffleEnabled: Boolean,
     repeatMode: Int,
     enabled: Boolean,
+    onSleepTimer: () -> Unit,
+    onOpenQueue: () -> Unit,
     onToggleShuffle: () -> Unit,
     onCycleRepeat: () -> Unit,
+    onAddToPlaylist: () -> Unit,
+    onMore: () -> Unit,
 ) {
     Row(
-        horizontalArrangement = Arrangement.Center,
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = PlayerHorizontalPadding),
     ) {
         PlayerExtraButton(
+            icon = R.drawable.bedtime,
+            active = sleepTimerEnabled,
+            enabled = enabled,
+            onClick = onSleepTimer,
+        )
+        PlayerExtraButton(
+            icon = R.drawable.queue_music,
+            active = false,
+            enabled = true,
+            onClick = onOpenQueue,
+        )
+        PlayerExtraButton(
             icon = if (shuffleEnabled) R.drawable.shuffle_on else R.drawable.shuffle,
             active = shuffleEnabled,
             enabled = enabled,
             onClick = onToggleShuffle,
         )
-        Spacer(Modifier.width(20.dp))
         PlayerExtraButton(
             icon = if (repeatMode == Player.REPEAT_MODE_ONE) R.drawable.repeat_one else R.drawable.repeat,
             active = repeatMode != Player.REPEAT_MODE_OFF,
             enabled = enabled,
             onClick = onCycleRepeat,
+        )
+        PlayerExtraButton(
+            icon = R.drawable.playlist_add,
+            active = false,
+            enabled = true,
+            onClick = onAddToPlaylist,
+        )
+        PlayerExtraButton(
+            icon = R.drawable.more_vert,
+            active = false,
+            enabled = true,
+            onClick = onMore,
         )
     }
 }
@@ -2315,8 +2385,8 @@ private fun PlayerExtraButton(
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .size(44.dp)
-            .clip(RoundedCornerShape(14.dp))
+            .size(40.dp)
+            .clip(RoundedCornerShape(13.dp))
             .background(
                 if (active) MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
                 else MaterialTheme.colorScheme.surfaceContainerHigh,
