@@ -23,28 +23,10 @@ kotlin {
 }
 
 dependencies {
-    // PERBAIKAN: Paksa varian androidJvm untuk innertubex
-    // JitPack mempublikasikan innertubex sebagai KMP dengan banyak varian
-    // (iosArm64, iosSimulatorArm64, jvm, dll.) sehingga Gradle bingung memilih.
-    // Solusi: tambahkan atribut resolusi eksplisit pada dependency.
     if (providers.gradleProperty("useMavenLocalInnerTubeX").isPresent) {
-        api("com.github.MetrolistGroup:innertubex:${libs.versions.innertubex.get()}") {
-            attributes {
-                attribute(
-                    Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java),
-                    "androidJvm"
-                )
-            }
-        }
+        api("com.github.MetrolistGroup:innertubex:${libs.versions.innertubex.get()}")
     } else {
-        api(libs.innertubex) {
-            attributes {
-                attribute(
-                    Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java),
-                    "androidJvm"
-                )
-            }
-        }
+        api(libs.innertubex)
     }
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)
@@ -56,14 +38,4 @@ dependencies {
     testImplementation(libs.ktor.client.mock)
 
     coreLibraryDesugaring(libs.desugaring)
-}
-
-// PERBAIKAN TAMBAHAN: Pastikan semua konfigurasi resolusi menggunakan androidJvm
-configurations.all {
-    attributes {
-        attribute(
-            Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java),
-            "androidJvm"
-        )
-    }
 }
