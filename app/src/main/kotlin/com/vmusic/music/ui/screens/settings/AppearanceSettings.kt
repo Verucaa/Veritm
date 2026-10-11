@@ -64,6 +64,7 @@ import com.vmusic.music.constants.EnableHighRefreshRateKey
 import com.vmusic.music.constants.EnableLandscapeScalingKey
 import com.vmusic.music.constants.ExperimentalLyricsKey
 import com.vmusic.music.constants.ForceBottomNavBarKey
+import com.vmusic.music.constants.GlassmorphismKey
 import com.vmusic.music.constants.GridItemSize
 import com.vmusic.music.constants.GridItemsSizeKey
 import com.vmusic.music.constants.HidePlayerThumbnailKey
@@ -130,6 +131,11 @@ fun AppearanceSettings(
         rememberPreference(
             DynamicThemeKey,
             defaultValue = false,
+        )
+    val (glassmorphism, onGlassmorphismChange) =
+        rememberPreference(
+            GlassmorphismKey,
+            defaultValue = true,
         )
     val (enableDynamicIcon, onEnableDynamicIconPrefChange) =
         rememberPreference(
@@ -1006,6 +1012,30 @@ fun AppearanceSettings(
                                 )
                             },
                             onClick = { onEnableDynamicIconChange(!enableDynamicIcon) },
+                        ),
+                    )
+                    add(
+                        Material3SettingsItem(
+                            icon = painterResource(R.drawable.palette),
+                            title = { Text(stringResource(R.string.enable_glassmorphism)) },
+                            description = { Text(stringResource(R.string.enable_glassmorphism_desc)) },
+                            trailingContent = {
+                                Switch(
+                                    checked = glassmorphism,
+                                    onCheckedChange = onGlassmorphismChange,
+                                    thumbContent = {
+                                        Icon(
+                                            painter =
+                                                painterResource(
+                                                    id = if (glassmorphism) R.drawable.check else R.drawable.close,
+                                                ),
+                                            contentDescription = null,
+                                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                                        )
+                                    },
+                                )
+                            },
+                            onClick = { onGlassmorphismChange(!glassmorphism) },
                         ),
                     )
                     add(
