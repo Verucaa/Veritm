@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.vmusic.innertube"
+    namespace = "com.veritm.innertube"
     compileSdk = 37
 
     defaultConfig {

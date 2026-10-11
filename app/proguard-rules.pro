@@ -14,12 +14,12 @@
 -dontobfuscate
 
 # WebView JavaScript interfaces
--keepclassmembers class com.vmusic.music.utils.potoken.PoTokenWebView {
+-keepclassmembers class com.veritm.music.utils.potoken.PoTokenWebView {
     @android.webkit.JavascriptInterface public *;
 }
 
 # Keep PO-token utility classes
--keep class com.vmusic.music.utils.potoken.** { *; }
+-keep class com.veritm.music.utils.potoken.** { *; }
 
 # Keep coroutine continuation for WebView callbacks
 -keepclassmembers class * {
@@ -130,11 +130,11 @@
 
 ## Queue Persistence Rules
 # Keep queue-related classes to prevent serialization issues in release builds
--keep class com.vmusic.music.models.PersistQueue { *; }
--keep class com.vmusic.music.models.PersistPlayerState { *; }
--keep class com.vmusic.music.models.QueueData { *; }
--keep class com.vmusic.music.models.QueueType { *; }
--keep class com.vmusic.music.playback.queues.** { *; }
+-keep class com.veritm.music.models.PersistQueue { *; }
+-keep class com.veritm.music.models.PersistPlayerState { *; }
+-keep class com.veritm.music.models.QueueData { *; }
+-keep class com.veritm.music.models.QueueType { *; }
+-keep class com.veritm.music.playback.queues.** { *; }
 
 # Keep serialization methods for queue persistence
 -keepclassmembers class * implements java.io.Serializable {
@@ -148,7 +148,7 @@
 -keep interface com.yalantis.ucrop** { *; }
 
 ## Google Cast Rules
--keep class com.vmusic.music.cast.** { *; }
+-keep class com.veritm.music.cast.** { *; }
 -keep class com.google.android.gms.cast.** { *; }
 -keep class androidx.mediarouter.** { *; }
 
@@ -156,8 +156,8 @@
 -dontwarn com.google.re2j.**
 
 # Vibra fingerprint library
--keep class com.vmusic.music.recognition.VibraSignature { *; }
--keepclassmembers class com.vmusic.music.recognition.VibraSignature {
+-keep class com.veritm.music.recognition.VibraSignature { *; }
+-keepclassmembers class com.veritm.music.recognition.VibraSignature {
     native <methods>;
 }
 
@@ -172,20 +172,20 @@
 -dontwarn io.ktor.**
 
 ## Listen Together Protobuf
--keep class com.vmusic.music.listentogether.proto.** { *; }
--keepclassmembers class com.vmusic.music.listentogether.proto.** { *; }
+-keep class com.veritm.music.listentogether.proto.** { *; }
+-keepclassmembers class com.veritm.music.listentogether.proto.** { *; }
 
 ## Shazam Models
--keep class com.vmusic.shazamkit.models.** { *; }
--keepclassmembers class com.vmusic.shazamkit.models.** {
+-keep class com.veritm.shazamkit.models.** { *; }
+-keepclassmembers class com.veritm.shazamkit.models.** {
     *;
 }
 
 ## Kotlinx Serialization
 -keepattributes *Annotation*
--keepclassmembers class com.vmusic.shazamkit.models.** {
+-keepclassmembers class com.veritm.shazamkit.models.** {
     *** Companion;
 }
--keepclasseswithmembers class com.vmusic.shazamkit.models.** {
+-keepclasseswithmembers class com.veritm.shazamkit.models.** {
     kotlinx.serialization.KSerializer serializer(...);
 }

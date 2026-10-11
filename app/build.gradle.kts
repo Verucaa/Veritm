@@ -7,19 +7,19 @@ if (localPropertiesFile.exists()) {
     localProperties.load(localPropertiesFile.inputStream())
 }
 
-val baseApplicationId = "com.vmusic.music"
-val applicationIdOverride = System.getenv("VMUSIC_APPLICATION_ID")?.takeIf { it.isNotBlank() }
-val appNameOverride = System.getenv("VMUSIC_APP_NAME")?.takeIf { it.isNotBlank() }
+val baseApplicationId = "com.veritm.music"
+val applicationIdOverride = System.getenv("VERITM_APPLICATION_ID")?.takeIf { it.isNotBlank() }
+val appNameOverride = System.getenv("VERITM_APP_NAME")?.takeIf { it.isNotBlank() }
 val buildCommit =
-    System.getenv("VMUSIC_BUILD_COMMIT")
+    System.getenv("VERITM_BUILD_COMMIT")
         ?.trim()
         ?.takeIf { it.matches(Regex("[0-9a-fA-F]{7,40}")) }
         ?.take(7)
         ?.lowercase()
-val debugKeystorePathOverride = System.getenv("VMUSIC_DEBUG_KEYSTORE_PATH")?.takeIf { it.isNotBlank() }
-val debugKeystorePassword = System.getenv("VMUSIC_DEBUG_KEYSTORE_PASSWORD")?.takeIf { it.isNotBlank() } ?: "android"
-val debugKeyAlias = System.getenv("VMUSIC_DEBUG_KEY_ALIAS")?.takeIf { it.isNotBlank() } ?: "androiddebugkey"
-val debugKeyPassword = System.getenv("VMUSIC_DEBUG_KEY_PASSWORD")?.takeIf { it.isNotBlank() } ?: "android"
+val debugKeystorePathOverride = System.getenv("VERITM_DEBUG_KEYSTORE_PATH")?.takeIf { it.isNotBlank() }
+val debugKeystorePassword = System.getenv("VERITM_DEBUG_KEYSTORE_PASSWORD")?.takeIf { it.isNotBlank() } ?: "android"
+val debugKeyAlias = System.getenv("VERITM_DEBUG_KEY_ALIAS")?.takeIf { it.isNotBlank() } ?: "androiddebugkey"
+val debugKeyPassword = System.getenv("VERITM_DEBUG_KEY_PASSWORD")?.takeIf { it.isNotBlank() } ?: "android"
 val persistentDebugKeystoreFile = file("persistent-debug.keystore")
 val workflowDebugKeystoreFile = debugKeystorePathOverride?.let(::file)
 
@@ -33,7 +33,7 @@ plugins {
 }
 
 android {
-    namespace = "com.vmusic.music"
+    namespace = "com.veritm.music"
     compileSdk = 37
 
     defaultConfig {
@@ -45,7 +45,7 @@ android {
         val baseVersionName = requireNotNull(versionName)
         buildConfigField("String", "BASE_VERSION_NAME", "\"$baseVersionName\"")
         buildCommit?.let { versionName = "$baseVersionName+$it" }
-        resValue("string", "app_name", appNameOverride ?: "VmusiC")
+        resValue("string", "app_name", appNameOverride ?: "VERITM")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -132,7 +132,7 @@ android {
             }
             isDebuggable = true
             if (appNameOverride == null) {
-                resValue("string", "app_name", "VmusiC Debug")
+                resValue("string", "app_name", "VERITM Debug")
             }
             signingConfig =
                 if (workflowDebugKeystoreFile != null) {
@@ -219,7 +219,7 @@ protobuf {
 }
 
 val cleanLegacyProtoSources = tasks.register<Delete>("cleanLegacyProtoSources") {
-    delete(layout.projectDirectory.dir("src/main/java/com/vmusic/music/listentogether/proto"))
+    delete(layout.projectDirectory.dir("src/main/java/com/veritm/music/listentogether/proto"))
 }
 
 tasks.named("preBuild") {

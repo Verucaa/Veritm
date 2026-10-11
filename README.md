@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="fastlane/metadata/android/en-US/images/icon.png" alt="VmusiC app icon" width="200" />
+<img src="fastlane/metadata/android/en-US/images/icon.png" alt="VERITM app icon" width="200" />
 
-# VmusiC
+# VERITM
 
 ### YouTube Music client for Android
 
@@ -10,8 +10,8 @@ A dark, Spotify-styled fork of [Metrolist](https://github.com/MetrolistGroup/Met
 
 <br/>
 
-[![License](https://img.shields.io/github/license/VeruProject/VmusiC?style=for-the-badge&labelColor=0d1117)](https://github.com/VeruProject/VmusiC/blob/main/LICENSE)
-[![Latest release](https://img.shields.io/github/v/release/VeruProject/VmusiC?style=for-the-badge&labelColor=0d1117)](https://github.com/VeruProject/VmusiC/releases)
+[![License](https://img.shields.io/github/license/VeruProject/VERITM?style=for-the-badge&labelColor=0d1117)](https://github.com/VeruProject/VERITM/blob/main/LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/VeruProject/VERITM?style=for-the-badge&labelColor=0d1117)](https://github.com/VeruProject/VERITM/releases)
 
 <br/>
 
@@ -20,7 +20,7 @@ A dark, Spotify-styled fork of [Metrolist](https://github.com/MetrolistGroup/Met
 </div>
 
 > [!NOTE]
-> VmusiC is a fork of Metrolist, rewritten and rebranded for the `VeruProject` organization. All credit for the original work goes to the Metrolist team and its contributors — see [Credits](#credits).
+> VERITM is a fork of Metrolist, rewritten and rebranded for the `VeruProject` organization. All credit for the original work goes to the Metrolist team and its contributors — see [Credits](#credits).
 
 > [!WARNING]
 > **Regional Restriction** — If YouTube Music is unavailable in your region, this app will not work without a **VPN or proxy** connecting to a supported region.
@@ -106,8 +106,8 @@ A dark, Spotify-styled fork of [Metrolist](https://github.com/MetrolistGroup/Met
 
 <p>Download the latest APK from the releases page.</p>
 
-<a href="https://github.com/VeruProject/VmusiC/releases/latest">
-  <img src="https://img.shields.io/badge/GitHub-Latest%20Release-0d1117?style=for-the-badge&logo=github" alt="Download the latest VmusiC release" />
+<a href="https://github.com/VeruProject/VERITM/releases/latest">
+  <img src="https://img.shields.io/badge/GitHub-Latest%20Release-0d1117?style=for-the-badge&logo=github" alt="Download the latest VERITM release" />
 </a>
 
 <p>Available builds: <code>foss</code> (updater, no Cast), <code>gms</code> (updater + Google Cast), <code>izzy</code> (no updater, no Cast — F-Droid compliant).</p>
@@ -122,7 +122,7 @@ A dark, Spotify-styled fork of [Metrolist](https://github.com/MetrolistGroup/Met
 
 </div>
 
-VmusiC builds on GitHub Actions automatically — every push to `main` produces a nightly APK and every version bump produces a release. To build locally you need **JDK 21** and the **Android SDK** (`compileSdk 37`, build-tools `36.0.0`).
+VERITM builds on GitHub Actions automatically — every push to `main` produces a nightly APK and every version bump produces a release. To build locally you need **JDK 21** and the **Android SDK** (`compileSdk 37`, build-tools `36.0.0`).
 
 ```bash
 # Debug build (fastest)
@@ -145,9 +145,9 @@ Configuration is read from `local.properties` or environment variables:
 
 | Variable | Purpose | Default |
 |----------|---------|---------|
-| `VMUSIC_APPLICATION_ID` | Override application ID | `com.vmusic.music` |
-| `VMUSIC_APP_NAME` | Override the app name | `VmusiC` |
-| `VMUSIC_BUILD_COMMIT` | Commit hash appended to the version name | — |
+| `VERITM_APPLICATION_ID` | Override application ID | `com.veritm.music` |
+| `VERITM_APP_NAME` | Override the app name | `VERITM` |
+| `VERITM_BUILD_COMMIT` | Commit hash appended to the version name | — |
 | `LASTFM_API_KEY` / `LASTFM_SECRET` | Enable Last.fm scrobbling | empty |
 
 Release builds are signed with `app/keystore/release.keystore` using `STORE_PASSWORD`, `KEY_ALIAS`, and `KEY_PASSWORD`.
@@ -184,7 +184,7 @@ The adaptive icon definitions that reference these live in `app/src/main/res/mip
 
 ### Theme & colors
 
-- The default accent is Spotify green (`DefaultThemeColor` in `app/src/main/kotlin/com/vmusic/music/ui/theme/Theme.kt`).
+- The default accent is Spotify green (`DefaultThemeColor` in `app/src/main/kotlin/com/veritm/music/ui/theme/Theme.kt`).
 - The app ships dark by default (`DarkModeKey`) and pure black is available in settings.
 - Users can pick from the preset palettes or enable album-art dynamic color in **Settings → Appearance → Theme**.
 
@@ -194,7 +194,7 @@ The adaptive icon definitions that reference these live in `app/src/main/res/mip
 
 <h1><a id="credits"></a>Credits</h1>
 
-<h3>VmusiC is a rebrand of Metrolist. It stands on the shoulders of incredible open-source work.</h3>
+<h3>VERITM is a rebrand of Metrolist. It stands on the shoulders of incredible open-source work.</h3>
 
 <h3>Original project</h3>
 
@@ -289,6 +289,6 @@ Licensed under the **GNU General Public License v3.0 (GPL-3.0)**. See [LICENSE](
 
 <br/>
 
-**VmusiC is a project by [VeruProject](https://github.com/VeruProject)**
+**VERITM is a project by [VeruProject](https://github.com/VeruProject)**
 
 </div>

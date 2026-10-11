@@ -37,6 +37,6 @@ dependencyResolutionManagement {
 }
 
 // F-Droid doesn't support foojay-resolver plugin
-rootProject.name = "VmusiC"
+rootProject.name = "VERITM"
 include(":app")
 include(":innertube")

@@ -10,7 +10,7 @@ on:
     # changes still build.
     paths-ignore:
       - "app/src/main/res/values-*/strings.xml"
-      - "app/src/main/res/values-*/vmusic_strings.xml"
+      - "app/src/main/res/values-*/veritm_strings.xml"
       - "fastlane/**"
 
 concurrency:
@@ -58,7 +58,7 @@ jobs:
             -keyalg RSA \
             -keysize 2048 \
             -validity 10000 \
-            -dname "CN=VmusiC PR ${{ github.event.number }},O=VmusiC,C=US"
+            -dname "CN=VERITM PR ${{ github.event.number }},O=VERITM,C=US"
 
       - name: Save PR debug keystore
         if: steps.pr_keystore.outputs.cache-hit != 'true'
@@ -71,9 +71,9 @@ jobs:
         run: ./gradlew --console=plain assembleGmsDebug --warning-mode summary
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
-          VMUSIC_APPLICATION_ID: com.vmusic.music.pr.p${{ github.event.number }}
-          VMUSIC_APP_NAME: VmusiC PR ${{ github.event.number }}
-          VMUSIC_DEBUG_KEYSTORE_PATH: pr-debug.keystore
+          VERITM_APPLICATION_ID: com.veritm.music.pr.p${{ github.event.number }}
+          VERITM_APP_NAME: VERITM PR ${{ github.event.number }}
+          VERITM_DEBUG_KEYSTORE_PATH: pr-debug.keystore
           PULL_REQUEST: "true"
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
           LASTFM_SECRET: ${{ secrets.LASTFM_SECRET }}
