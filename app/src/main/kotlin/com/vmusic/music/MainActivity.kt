@@ -88,6 +88,7 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.toArgb
@@ -143,6 +144,7 @@ import com.vmusic.music.constants.DismissedStandaloneUpdateKey
 import com.vmusic.music.constants.DensityScaleKey
 import com.vmusic.music.constants.DisableScreenshotKey
 import com.vmusic.music.constants.DynamicThemeKey
+import com.vmusic.music.constants.GlassmorphismKey
 import com.vmusic.music.constants.EnableHighRefreshRateKey
 import com.vmusic.music.constants.EnableLandscapeScalingKey
 import com.vmusic.music.constants.ExperimentalLyricsKey
@@ -197,8 +199,10 @@ import com.vmusic.music.ui.screens.settings.DarkMode
 import com.vmusic.music.ui.screens.settings.NavigationTab
 import com.vmusic.music.ui.theme.ColorSaver
 import com.vmusic.music.ui.theme.DefaultThemeColor
+import com.vmusic.music.ui.theme.LocalGlassTokens
 import com.vmusic.music.ui.theme.VmusicTheme
 import com.vmusic.music.ui.theme.extractThemeColor
+import com.vmusic.music.ui.theme.glassTokens
 import com.vmusic.music.ui.utils.appBarScrollBehavior
 import com.vmusic.music.ui.utils.resetHeightOffset
 import com.vmusic.music.utils.ReleaseInfo
@@ -567,6 +571,8 @@ class MainActivity : FragmentActivity() {
         }
 
         val enableDynamicTheme by rememberPreference(DynamicThemeKey, defaultValue = false)
+        val glassmorphism by rememberPreference(GlassmorphismKey, defaultValue = true)
+        val effectiveDynamicTheme = glassmorphism || enableDynamicTheme
         val enableHighRefreshRate by rememberPreference(EnableHighRefreshRateKey, defaultValue = true)
 
         LaunchedEffect(enableHighRefreshRate) {
@@ -628,14 +634,14 @@ class MainActivity : FragmentActivity() {
         val themeColorCache = remember { mutableMapOf<String, Color>() }
 
         LaunchedEffect(selectedThemeColor) {
-            if (!enableDynamicTheme) {
+            if (!effectiveDynamicTheme) {
                 themeColor = selectedThemeColor
             }
         }
 
-        LaunchedEffect(playerConnection, enableDynamicTheme, selectedThemeColor) {
+        LaunchedEffect(playerConnection, effectiveDynamicTheme, selectedThemeColor) {
             val playerConnection = playerConnection
-            if (!enableDynamicTheme || playerConnection == null) {
+            if (!effectiveDynamicTheme || playerConnection == null) {
                 themeColor = selectedThemeColor
                 return@LaunchedEffect
             }
@@ -709,12 +715,31 @@ class MainActivity : FragmentActivity() {
                 )
             }
 
-            CompositionLocalProvider(LocalDensity provides scaledDensity) {
+            val glassTokensValue = glassTokens(dark = useDarkTheme, accent = MaterialTheme.colorScheme.primary)
+
+            CompositionLocalProvider(
+                LocalDensity provides scaledDensity,
+                LocalGlassTokens provides glassTokensValue,
+            ) {
             BoxWithConstraints(
                 modifier =
                     Modifier
                         .fillMaxSize()
-                        .background(if (pureBlack) Color.Black else MaterialTheme.colorScheme.surface),
+                        .background(
+                            if (glassmorphism && !pureBlack) {
+                                Brush.verticalGradient(
+                                    listOf(
+                                        MaterialTheme.colorScheme.primary.copy(alpha = 0.35f),
+                                        MaterialTheme.colorScheme.surface,
+                                        MaterialTheme.colorScheme.tertiary.copy(alpha = 0.25f),
+                                    ),
+                                )
+                            } else {
+                                androidx.compose.ui.graphics.SolidColor(
+                                    if (pureBlack) Color.Black else MaterialTheme.colorScheme.surface,
+                                )
+                            },
+                        ),
             ) {
                 val density = LocalDensity.current
                 val configuration = LocalWindowInfo.current

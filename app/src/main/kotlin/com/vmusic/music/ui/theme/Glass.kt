@@ -7,9 +7,6 @@ package com.vmusic.music.ui.theme
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -94,31 +91,6 @@ fun GlassCard(
         modifier = if (tokens.enabled) modifier.glassSurface(shape, strong) else modifier,
         shape = shape,
         color = if (tokens.enabled) Color.Transparent else MaterialTheme.colorScheme.surfaceContainer,
-        content = content,
-    )
-}
-
-@Composable
-fun AppBackdrop(
-    modifier: Modifier = Modifier,
-    content: @Composable BoxScope.() -> Unit,
-) {
-    val tokens = LocalGlassTokens.current
-    val colorScheme = MaterialTheme.colorScheme
-    val brush =
-        if (tokens.enabled) {
-            Brush.verticalGradient(
-                listOf(
-                    colorScheme.primary.copy(alpha = 0.35f),
-                    colorScheme.surface,
-                    colorScheme.tertiary.copy(alpha = 0.25f),
-                ),
-            )
-        } else {
-            Brush.verticalGradient(listOf(colorScheme.surface, colorScheme.surface))
-        }
-    Box(
-        modifier = modifier.fillMaxSize().background(brush),
         content = content,
     )
 }
