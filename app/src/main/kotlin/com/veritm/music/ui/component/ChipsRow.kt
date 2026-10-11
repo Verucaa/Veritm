@@ -78,6 +78,8 @@ fun <E> ChipsRow(
                 selected = currentValue == value,
                 colors = FilterChipDefaults.filterChipColors(
                     containerColor = containerColor,
+                    selectedContainerColor = MaterialTheme.colorScheme.primary,
+                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
                 ),
                 onClick = { onValueUpdate(value) },
                 shape = RoundedCornerShape(16.dp),

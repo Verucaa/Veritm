@@ -307,7 +307,7 @@ fun LyricsMenu(
                             Text(
                                 text = result.providerName,
                                 style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.secondary,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 maxLines = 1,
                             )
                             if (result.lyrics.startsWith("[")) {

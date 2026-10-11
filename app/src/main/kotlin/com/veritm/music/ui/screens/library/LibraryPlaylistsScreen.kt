@@ -364,7 +364,7 @@ fun LibraryPlaylistsScreen(
                     visibleResults.count { !it.autoPlaylist },
                 ),
                 style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.secondary,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             IconButton(

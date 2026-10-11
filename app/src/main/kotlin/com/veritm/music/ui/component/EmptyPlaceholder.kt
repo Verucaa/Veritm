@@ -38,7 +38,7 @@ fun EmptyPlaceholder(
         Image(
             painter = painterResource(icon),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground),
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant),
             modifier = Modifier.size(64.dp),
         )
 
@@ -47,6 +47,7 @@ fun EmptyPlaceholder(
         Text(
             text = text,
             style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }

@@ -788,7 +788,7 @@ fun OriginalLyrics(
                 Text(
                     text = stringResource(R.string.lyrics_not_found),
                     fontSize = 20.sp,
-                    color = MaterialTheme.colorScheme.secondary,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.alpha(0.5f),
@@ -2098,7 +2098,7 @@ fun OriginalLyrics(
 
                         Text(text = stringResource(id = R.string.text_color), style = MaterialTheme.typography.titleMedium)
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(vertical = 8.dp)) {
-                            (paletteColors + listOf(Color.White, Color.Black, Color(0xFF1DB954))).distinct().take(8).forEach { color ->
+                            (paletteColors + listOf(Color.White, Color.Black, Color(0xFF38BDF8))).distinct().take(8).forEach { color ->
                                 Box(
                                     modifier =
                                         Modifier
@@ -2118,7 +2118,7 @@ fun OriginalLyrics(
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(vertical = 8.dp)) {
                             (
                                 paletteColors.map { it.copy(alpha = 0.7f) } +
-                                    listOf(Color.White.copy(alpha = 0.7f), Color.Black.copy(alpha = 0.7f), Color(0xFF1DB954))
+                                    listOf(Color.White.copy(alpha = 0.7f), Color.Black.copy(alpha = 0.7f), Color(0xFF38BDF8))
                             ).distinct().take(8).forEach { color ->
                                 Box(
                                     modifier =

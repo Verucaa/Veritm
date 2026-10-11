@@ -928,7 +928,7 @@ private fun PendingJoinRequestsSection(
                     Surface(
                         modifier = Modifier.size(40.dp),
                         shape = CircleShape,
-                        color = MaterialTheme.colorScheme.secondary,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     ) {
                         Box(
                             contentAlignment = Alignment.Center,

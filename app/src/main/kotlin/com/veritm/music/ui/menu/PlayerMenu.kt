@@ -1663,7 +1663,7 @@ fun ListenTogetherDialog(
                                     Surface(
                                         modifier = Modifier.size(36.dp),
                                         shape = RoundedCornerShape(50),
-                                        color = MaterialTheme.colorScheme.secondary,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     ) {
                                         Box(
                                             contentAlignment = Alignment.Center,
