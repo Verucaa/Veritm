@@ -200,6 +200,7 @@ import com.vmusic.music.ui.screens.settings.DarkMode
 import com.vmusic.music.ui.screens.settings.NavigationTab
 import com.vmusic.music.ui.theme.ColorSaver
 import com.vmusic.music.ui.theme.DefaultThemeColor
+import com.vmusic.music.ui.theme.GlassTokens
 import com.vmusic.music.ui.theme.LocalGlassTokens
 import com.vmusic.music.ui.theme.VmusicTheme
 import com.vmusic.music.ui.theme.extractThemeColor
@@ -716,7 +717,12 @@ class MainActivity : FragmentActivity() {
                 )
             }
 
-            val glassTokensValue = glassTokens(dark = useDarkTheme, accent = MaterialTheme.colorScheme.primary)
+            val glassTokensValue =
+                if (glassmorphism) {
+                    glassTokens(dark = useDarkTheme, accent = MaterialTheme.colorScheme.primary)
+                } else {
+                    GlassTokens.Disabled
+                }
 
             CompositionLocalProvider(
                 LocalDensity provides scaledDensity,
