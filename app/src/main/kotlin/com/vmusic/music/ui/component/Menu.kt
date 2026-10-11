@@ -24,7 +24,10 @@ import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.vmusic.music.ui.theme.LocalGlassTokens
+import com.vmusic.music.ui.theme.glassSurface
 
 @Composable
 fun Material3MenuGroup(
@@ -42,13 +45,22 @@ fun Material3MenuGroup(
                 else -> RoundedCornerShape(6.dp)
             }
 
+            val useGlass = LocalGlassTokens.current.enabled && item.cardColors == null
+
             Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .animateContentSize()
+                        .then(if (useGlass) Modifier.glassSurface(shape, strong = true) else Modifier),
                 shape = shape,
                 colors = item.cardColors ?: CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+                    containerColor =
+                        if (useGlass) {
+                            Color.Transparent
+                        } else {
+                            MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+                        }
                 ),
                 elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
             ) {

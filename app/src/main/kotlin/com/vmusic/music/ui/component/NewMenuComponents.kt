@@ -35,6 +35,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.vmusic.music.ui.theme.LocalGlassTokens
+import com.vmusic.music.ui.theme.glassSurface
 
 @Composable
 private fun NewActionButton(
@@ -67,13 +69,22 @@ private fun NewActionButton(
         }
     }
 
+    val useGlass = LocalGlassTokens.current.enabled
+
     Card(
         modifier =
             modifier
-                .clickable(enabled = enabled) { performAction = true },
+                .clickable(enabled = enabled) { performAction = true }
+                .then(
+                    if (useGlass) {
+                        Modifier.glassSurface(RoundedCornerShape(16.dp), strong = true)
+                    } else {
+                        Modifier
+                    },
+                ),
         colors =
             CardDefaults.cardColors(
-                containerColor = animatedBackground,
+                containerColor = if (useGlass) Color.Transparent else animatedBackground,
             ),
         shape = RoundedCornerShape(16.dp),
         elevation =
