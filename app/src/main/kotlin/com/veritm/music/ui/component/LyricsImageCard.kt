@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import com.veritm.music.ui.theme.VeritmSurface
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -167,7 +168,7 @@ fun LyricsImageCard(
     val padding = 28.dp
     val coverArtSize = 64.dp
 
-    val defaultBgColor = if (darkBackground) Color(0xFF121212) else Color(0xFFF5F5F5)
+    val defaultBgColor = if (darkBackground) VeritmSurface else Color(0xFFF1F5F9)
     val backgroundSolidColor = backgroundColor ?: defaultBgColor
     
     val mainTextColor = textColor ?: if (darkBackground) Color.White else Color.Black
