@@ -30,6 +30,8 @@ import android.net.ConnectivityManager
 import android.os.Binder
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.os.PowerManager
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -2319,6 +2321,11 @@ class MusicService :
     // naturally (and is therefore safe to mark as fully cached).
     private var lastTransitionedMediaId: String? = null
     private var previousEpisodePosition: Long = 0L
+
+    // Tracks the last applied playback speed. -1.0f acts as a sentinel
+    // meaning "unknown / needs refresh" and is set on every media item
+    // transition to force downstream observers to re-read the speed.
+    private var lastPlaybackSpeed: Float = -1.0f
 
     /**
      * Save podcast episode playback position to database.
