@@ -68,8 +68,8 @@ import com.veritm.innertube.pages.SearchResult
 import com.veritm.innertube.pages.SearchSuggestionPage
 import com.veritm.innertube.pages.SearchSummary
 import com.veritm.innertube.pages.SearchSummaryPage
-import com.metrolist.innertubex.models.YouTubeClient.Companion.WEB
-import com.metrolist.innertubex.models.YouTubeClient.Companion.WEB_REMIX
+import com.veritm.innertubex.models.YouTubeClient.Companion.WEB
+import com.veritm.innertubex.models.YouTubeClient.Companion.WEB_REMIX
 import io.ktor.client.call.body
 import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.async

@@ -1,5 +1,5 @@
 /*
- * Metrolist Project (C) 2026
+ * Veritm Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
 
@@ -67,7 +67,7 @@ object OpenRouterStreamingService {
                         .apply {
                             if (apiKey.isNotBlank()) addHeader("Authorization", "Bearer ${apiKey.trim()}")
                         }.addHeader("Content-Type", "application/json")
-                        .addHeader("HTTP-Referer", "https://github.com/MetrolistGroup/Metrolist")
+                        .addHeader("HTTP-Referer", "https://github.com/VeruProject/VERITM")
                         .addHeader("X-Title", "VERITM")
                         .post(body.toString().toRequestBody(jsonMediaType))
                         .build()

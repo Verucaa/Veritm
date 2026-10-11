@@ -1,5 +1,5 @@
 /**
- * Metrolist Project (C) 2026
+ * Veritm Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
 
@@ -117,8 +117,9 @@ private val collaborators = listOf(
 )
 
 private val communityLinks = listOf(
-    CommunityLink(R.string.credits_telegram, R.drawable.telegram, "https://t.me/metrolistapp"),
+    CommunityLink(R.string.credits_website, R.drawable.language, "https://example.com"),
     CommunityLink(R.string.credits_view_repo, R.drawable.github, "https://github.com/VeruProject/VERITM"),
+    CommunityLink(R.string.credits_whatsapp, R.drawable.whatsapp, "https://example.com"),
     CommunityLink(R.string.credits_license_name, R.drawable.info, "https://github.com/VeruProject/VERITM/blob/main/LICENSE")
 )
 
@@ -253,7 +254,7 @@ fun AboutScreen(
             ) {
                 Image(
                     painter = painterResource(R.drawable.small_icon),
-                    contentDescription = stringResource(R.string.metrolist),
+                    contentDescription = stringResource(R.string.veritm),
                     colorFilter = ColorFilter.tint(
                         color = MaterialTheme.colorScheme.primary,
                         blendMode = BlendMode.SrcIn,
@@ -264,12 +265,12 @@ fun AboutScreen(
                 Spacer(Modifier.width(20.dp))
         
                 Column {
-                    val metrolistName = stringResource(R.string.metrolist)
+                    val veritmName = stringResource(R.string.veritm)
                         .lowercase(Locale.getDefault())
                         .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
                     Text(
-                        text = metrolistName,
+                        text = veritmName,
                         style = MaterialTheme.typography.headlineLarge,
                         fontWeight = FontWeight.Black,
                         color = MaterialTheme.colorScheme.onSurface,
@@ -389,7 +390,7 @@ fun AboutScreen(
                 Spacer(Modifier.height(16.dp))
                 
                 Button(
-                    onClick = { uriHandler.openUri("https://buymeacoffee.com/mostafaalagamy") },
+                    onClick = { uriHandler.openUri("https://saweria.co/") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = CircleShape,
                     colors = ButtonDefaults.buttonColors(

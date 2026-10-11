@@ -1,5 +1,5 @@
 /**
- * Metrolist Project (C) 2026
+ * Veritm Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
 
@@ -420,18 +420,8 @@ fun OriginalLyrics(
         }
     }
 
-    // Use Material 3 expressive accents and keep glow/text colors unified
-    val expressiveAccent =
-        when (playerBackground) {
-            PlayerBackgroundStyle.DEFAULT -> {
-                MaterialTheme.colorScheme.primary
-            }
-
-            PlayerBackgroundStyle.BLUR, PlayerBackgroundStyle.GRADIENT -> {
-                // For blur/gradient backgrounds, always use light colors regardless of theme
-                Color.White
-            }
-        }
+    // Always white so lyrics stay readable on the blurred/dark player background
+    val expressiveAccent = Color.White
 
     var currentLineIndex by remember {
         mutableIntStateOf(-1)

@@ -1,5 +1,5 @@
 /**
- * Metrolist Project (C) 2026
+ * Veritm Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
 
@@ -295,10 +295,7 @@ fun ExperimentalLyrics(
         }
     }
 
-    val expressiveAccent = when (playerBackground) {
-        PlayerBackgroundStyle.DEFAULT -> MaterialTheme.colorScheme.primary
-        PlayerBackgroundStyle.BLUR, PlayerBackgroundStyle.GRADIENT -> Color.White
-    }
+    val expressiveAccent = Color.White
 
     var activeLineIndices by remember { mutableStateOf(emptySet<Int>()) }
     var scrollTargetIndex by rememberSaveable { mutableIntStateOf(-1) }

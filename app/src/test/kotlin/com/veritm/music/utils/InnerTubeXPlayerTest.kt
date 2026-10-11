@@ -1,7 +1,7 @@
 package com.veritm.music.utils
 
-import com.metrolist.innertubex.extraction.PlayerConfig
-import com.metrolist.innertubex.extraction.YtConfigParser
+import com.veritm.innertubex.extraction.PlayerConfig
+import com.veritm.innertubex.extraction.YtConfigParser
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals

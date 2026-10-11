@@ -1,5 +1,5 @@
 /**
- * Metrolist Project (C) 2026
+ * Veritm Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
 
@@ -29,6 +29,7 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
@@ -50,6 +51,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
@@ -113,6 +115,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
@@ -721,6 +724,10 @@ fun BottomSheetPlayer(
                                         Toast.LENGTH_SHORT,
                                     ).show()
                                 },
+                                colors = IconButtonDefaults.outlinedIconButtonColors(
+                                    contentColor = MaterialTheme.colorScheme.onSurface,
+                                ),
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
                             ) {
                                 Text(stringResource(R.string.set_as_default))
                             }
@@ -731,6 +738,10 @@ fun BottomSheetPlayer(
                                 showSleepTimerDialog = false
                                 playerConnection.service.sleepTimer?.start(minute = -1)
                             },
+                            colors = IconButtonDefaults.outlinedIconButtonColors(
+                                contentColor = MaterialTheme.colorScheme.onSurface,
+                            ),
+                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
                         ) {
                             Text(stringResource(R.string.end_of_song))
                         }
@@ -1547,12 +1558,6 @@ fun BottomSheetPlayer(
                 exit = shrinkVertically(shrinkTowards = Alignment.Top) + slideOutVertically(targetOffsetY = { it }) + fadeOut(),
             ) {
                 Column {
-                    PlayerViewToggle(
-                        showLyrics = showInlineLyrics,
-                        onSelectAlbum = { showInlineLyrics = false },
-                        onSelectLyrics = { showInlineLyrics = true },
-                    )
-                    Spacer(Modifier.height(16.dp))
                     if (useNewPlayerDesign) {
                         Row(
                             horizontalArrangement = Arrangement.Center,
@@ -1870,7 +1875,7 @@ fun BottomSheetPlayer(
                         }
                     }
                     if (useNewPlayerDesign) {
-                        Spacer(Modifier.height(16.dp))
+                        Spacer(Modifier.height(24.dp))
                         PlayerExtraControls(
                             sleepTimerEnabled = sleepTimerEnabled,
                             shuffleEnabled = shuffleModeEnabled,
@@ -2030,10 +2035,19 @@ fun BottomSheetPlayer(
                         controlsContent(it)
                     }
 
-                    Spacer(Modifier.height(30.dp))
+                    Spacer(Modifier.height(16.dp))
                 }
             }
         }
+
+        PlayerTopTabs(
+            showLyrics = showInlineLyrics,
+            onSelectAlbum = { showInlineLyrics = false },
+            onSelectLyrics = { showInlineLyrics = true },
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)),
+        )
 
         AnimatedVisibility(
             visible = !isFullScreen,
@@ -2251,66 +2265,74 @@ private fun PlayerMoreMenuButton(
 }
 
 @Composable
-private fun PlayerViewToggle(
+private fun PlayerTopTabs(
     showLyrics: Boolean,
     onSelectAlbum: () -> Unit,
     onSelectLyrics: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Row(
-        horizontalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = PlayerHorizontalPadding),
+    val selectedIndex = if (showLyrics) 1 else 0
+    val tabWidth = 88.dp
+    val indicatorOffset by animateDpAsState(
+        targetValue = tabWidth * selectedIndex,
+        label = "tabIndicator",
+    )
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier,
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .clip(RoundedCornerShape(14.dp))
-                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-                .padding(4.dp),
-        ) {
-            PlayerToggleSegment(
-                selected = !showLyrics,
-                icon = R.drawable.album,
+        Spacer(Modifier.height(10.dp))
+        Row {
+            PlayerTab(
                 label = stringResource(R.string.player_tab_album),
+                selected = !showLyrics,
+                width = tabWidth,
                 onClick = onSelectAlbum,
             )
-            PlayerToggleSegment(
-                selected = showLyrics,
-                icon = R.drawable.lyrics,
+            PlayerTab(
                 label = stringResource(R.string.player_tab_lyrics),
+                selected = showLyrics,
+                width = tabWidth,
                 onClick = onSelectLyrics,
+            )
+        }
+        Spacer(Modifier.height(2.dp))
+        Box(
+            modifier = Modifier
+                .width(tabWidth * 2)
+                .height(2.dp),
+        ) {
+            Box(
+                modifier = Modifier
+                    .offset(x = indicatorOffset)
+                    .width(tabWidth)
+                    .height(2.dp)
+                    .background(Color.White, RoundedCornerShape(1.dp)),
             )
         }
     }
 }
 
 @Composable
-private fun PlayerToggleSegment(
-    selected: Boolean,
-    icon: Int,
+private fun PlayerTab(
     label: String,
+    selected: Boolean,
+    width: Dp,
     onClick: () -> Unit,
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
+    Box(
+        contentAlignment = Alignment.Center,
         modifier = Modifier
-            .clip(RoundedCornerShape(10.dp))
-            .background(if (selected) MaterialTheme.colorScheme.primary else Color.Transparent)
+            .width(width)
+            .clip(RoundedCornerShape(8.dp))
             .clickable(onClick = onClick)
-            .padding(horizontal = 18.dp, vertical = 8.dp),
+            .padding(vertical = 8.dp),
     ) {
-        Icon(
-            painter = painterResource(icon),
-            contentDescription = null,
-            tint = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.size(16.dp),
-        )
-        Spacer(Modifier.width(8.dp))
         Text(
             text = label,
-            style = MaterialTheme.typography.labelLarge,
-            color = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+            color = if (selected) Color.White else Color.White.copy(alpha = 0.6f),
         )
     }
 }

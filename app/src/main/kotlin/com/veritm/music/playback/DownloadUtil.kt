@@ -1,5 +1,5 @@
 /**
- * Metrolist Project (C) 2026
+ * Veritm Project (C) 2026
  * Licensed under GPL-3.0 | See git history for contributors
  */
 
@@ -25,7 +25,7 @@ import coil3.request.CachePolicy
 import coil3.request.ImageRequest
 import com.veritm.innertube.YouTube
 import com.veritm.innertube.models.SongItem
-import com.metrolist.innertubex.extraction.ContentHints
+import com.veritm.innertubex.extraction.ContentHints
 import com.veritm.music.constants.AudioQuality
 import com.veritm.music.constants.AudioQualityKey
 import com.veritm.music.db.MusicDatabase
