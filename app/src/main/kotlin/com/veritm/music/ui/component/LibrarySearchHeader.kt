@@ -31,7 +31,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.veritm.music.R
-import com.veritm.music.ui.theme.glassSurface
 
 @Composable
 fun LibrarySearchHeader(
@@ -57,7 +56,6 @@ fun LibrarySearchHeader(
         modifier =
             modifier
                 .fillMaxWidth()
-                .glassSurface(MaterialTheme.shapes.extraLarge)
                 .padding(horizontal = 12.dp, vertical = 4.dp),
     ) {
         if (isSearchActive) {

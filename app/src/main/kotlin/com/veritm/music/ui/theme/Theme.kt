@@ -19,20 +19,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.palette.graphics.Palette
-import com.materialkolor.PaletteStyle
-import com.materialkolor.dynamiccolor.ColorSpec
-import com.materialkolor.rememberDynamicColorScheme
 import com.materialkolor.score.Score
 
-val DefaultThemeColor = Color(0xFF1DB954)
+val DefaultThemeColor = VeritmBlue
 
 private val VeritmShapes =
     Shapes(
-        extraSmall = RoundedCornerShape(8.dp),
-        small = RoundedCornerShape(12.dp),
-        medium = RoundedCornerShape(16.dp),
-        large = RoundedCornerShape(24.dp),
-        extraLarge = RoundedCornerShape(32.dp),
+        extraSmall = RoundedCornerShape(6.dp),
+        small = RoundedCornerShape(10.dp),
+        medium = RoundedCornerShape(14.dp),
+        large = RoundedCornerShape(20.dp),
+        extraLarge = RoundedCornerShape(28.dp),
     )
 
 @Composable
@@ -42,23 +39,12 @@ fun VeritmTheme(
     themeColor: Color = DefaultThemeColor,
     content: @Composable () -> Unit,
 ) {
-    // Always seed the color scheme from the selected theme color so the
-    // default Spotify-style green is honored instead of system wallpaper colors.
-    val baseColorScheme = rememberDynamicColorScheme(
-        seedColor = themeColor,
-        isDark = darkTheme,
-        specVersion = ColorSpec.SpecVersion.SPEC_2025,
-        style = PaletteStyle.TonalSpot
-    )
-
-    // Apply pureBlack modification if needed, similar to original logic
-    val colorScheme = remember(baseColorScheme, pureBlack, darkTheme) {
-        if (darkTheme && pureBlack) {
-            baseColorScheme.pureBlack(true)
-        } else {
-            baseColorScheme
+    val colorScheme =
+        remember(darkTheme, pureBlack, themeColor) {
+            val base = if (darkTheme) VeritmDarkColorScheme else VeritmLightColorScheme
+            val accent = if (themeColor == DefaultThemeColor) base else base.withAccent(themeColor, darkTheme)
+            if (darkTheme && pureBlack) accent.pureBlack(true) else accent
         }
-    }
 
     MaterialTheme(
         colorScheme = colorScheme,

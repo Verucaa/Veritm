@@ -88,7 +88,7 @@ data class ThemePalette(
 )
 
 val PaletteColors = listOf(
-    ThemePalette(R.string.palette_spotify, DefaultThemeColor), // VERITM default (Spotify-style green)
+    ThemePalette(R.string.palette_veritm, DefaultThemeColor), // VERITM default accent
     ThemePalette(R.string.palette_rose, Color(0xFFD81B60)),
     ThemePalette(R.string.palette_purple, Color(0xFF8E24AA)),
     ThemePalette(R.string.palette_deep_purple, Color(0xFF5E35B1)),

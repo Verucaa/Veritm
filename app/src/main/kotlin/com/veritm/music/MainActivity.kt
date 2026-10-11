@@ -89,7 +89,6 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.toArgb
@@ -145,7 +144,6 @@ import com.veritm.music.constants.DismissedStandaloneUpdateKey
 import com.veritm.music.constants.DensityScaleKey
 import com.veritm.music.constants.DisableScreenshotKey
 import com.veritm.music.constants.DynamicThemeKey
-import com.veritm.music.constants.GlassmorphismKey
 import com.veritm.music.constants.EnableHighRefreshRateKey
 import com.veritm.music.constants.EnableLandscapeScalingKey
 import com.veritm.music.constants.ExperimentalLyricsKey
@@ -200,11 +198,8 @@ import com.veritm.music.ui.screens.settings.DarkMode
 import com.veritm.music.ui.screens.settings.NavigationTab
 import com.veritm.music.ui.theme.ColorSaver
 import com.veritm.music.ui.theme.DefaultThemeColor
-import com.veritm.music.ui.theme.GlassTokens
-import com.veritm.music.ui.theme.LocalGlassTokens
 import com.veritm.music.ui.theme.VeritmTheme
 import com.veritm.music.ui.theme.extractThemeColor
-import com.veritm.music.ui.theme.glassTokens
 import com.veritm.music.ui.utils.appBarScrollBehavior
 import com.veritm.music.ui.utils.resetHeightOffset
 import com.veritm.music.utils.ReleaseInfo
@@ -573,8 +568,7 @@ class MainActivity : FragmentActivity() {
         }
 
         val enableDynamicTheme by rememberPreference(DynamicThemeKey, defaultValue = false)
-        val glassmorphism by rememberPreference(GlassmorphismKey, defaultValue = true)
-        val effectiveDynamicTheme = glassmorphism || enableDynamicTheme
+        val effectiveDynamicTheme = enableDynamicTheme
         val enableHighRefreshRate by rememberPreference(EnableHighRefreshRateKey, defaultValue = true)
 
         LaunchedEffect(enableHighRefreshRate) {
@@ -717,35 +711,17 @@ class MainActivity : FragmentActivity() {
                 )
             }
 
-            val glassTokensValue =
-                if (glassmorphism) {
-                    glassTokens(dark = useDarkTheme, accent = MaterialTheme.colorScheme.primary)
-                } else {
-                    GlassTokens.Disabled
-                }
-
             CompositionLocalProvider(
                 LocalDensity provides scaledDensity,
-                LocalGlassTokens provides glassTokensValue,
             ) {
             BoxWithConstraints(
                 modifier =
                     Modifier
                         .fillMaxSize()
                         .background(
-                            if (glassmorphism && !pureBlack) {
-                                Brush.verticalGradient(
-                                    listOf(
-                                        MaterialTheme.colorScheme.primary.copy(alpha = 0.35f),
-                                        MaterialTheme.colorScheme.surface,
-                                        MaterialTheme.colorScheme.tertiary.copy(alpha = 0.25f),
-                                    ),
-                                )
-                            } else {
-                                androidx.compose.ui.graphics.SolidColor(
-                                    if (pureBlack) Color.Black else MaterialTheme.colorScheme.surface,
-                                )
-                            },
+                            androidx.compose.ui.graphics.SolidColor(
+                                if (pureBlack) Color.Black else MaterialTheme.colorScheme.surface,
+                            ),
                         ),
             ) {
                 val density = LocalDensity.current

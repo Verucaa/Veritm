@@ -177,7 +177,6 @@ import com.veritm.music.ui.component.rememberBottomSheetState
 import com.veritm.music.ui.menu.PlayerMenu
 import com.veritm.music.ui.screens.settings.DarkMode
 import com.veritm.music.ui.theme.PlayerColorExtractor
-import com.veritm.music.ui.theme.glassSurface
 import com.veritm.music.ui.theme.PlayerSliderColors
 import com.veritm.music.ui.utils.ShowMediaInfo
 import com.veritm.music.ui.utils.ShowOffsetDialog
@@ -1149,7 +1148,7 @@ fun BottomSheetPlayer(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier =
                             Modifier
-                                .glassSurface(RoundedCornerShape(24.dp))
+                                .background(MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(24.dp))
                                 .padding(4.dp),
                     ) {
                         AnimatedContent(targetState = showInlineLyrics, label = "ShareButton") { showLyrics ->
@@ -1537,7 +1536,7 @@ fun BottomSheetPlayer(
                                 Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = PlayerHorizontalPadding)
-                                    .glassSurface(RoundedCornerShape(24.dp))
+                                    .background(MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(24.dp))
                                     .padding(vertical = 6.dp),
                         ) {
                             val backInteractionSource = remember { MutableInteractionSource() }
@@ -1720,7 +1719,7 @@ fun BottomSheetPlayer(
                                 Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = PlayerHorizontalPadding)
-                                    .glassSurface(RoundedCornerShape(24.dp))
+                                    .background(MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(24.dp))
                                     .padding(vertical = 6.dp),
                         ) {
                             Box(modifier = Modifier.weight(1f)) {

@@ -141,8 +141,6 @@ import com.veritm.music.ui.component.HideOnScrollFAB
 import com.veritm.music.ui.component.LocalBottomSheetPageState
 import com.veritm.music.ui.component.LocalMenuState
 import com.veritm.music.ui.component.NavigationTitle
-import com.veritm.music.ui.theme.LocalGlassTokens
-import com.veritm.music.ui.theme.glassSurface
 import com.veritm.music.ui.component.RandomizeGridItem
 import com.veritm.music.ui.component.SongGridItem
 import com.veritm.music.ui.component.SongListItem
@@ -220,11 +218,8 @@ fun CommunityPlaylistCard(
     val isDark = isSystemInDarkTheme()
     val artistNameAliases = LocalArtistNameAliases.current
 
-    val glassEnabled = LocalGlassTokens.current.enabled
     val containerColor =
-        if (glassEnabled) {
-            Color.Transparent
-        } else if (isDark) {
+        if (isDark) {
             MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp)
         } else {
             MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
@@ -237,8 +232,7 @@ fun CommunityPlaylistCard(
         modifier =
             modifier
                 .width(320.dp)
-                .height(420.dp)
-                .glassSurface(RoundedCornerShape(28.dp), strong = true),
+                .height(420.dp),
         colors =
             CardDefaults.cardColors(
                 containerColor = containerColor,
@@ -1385,16 +1379,10 @@ fun HomeScreen(
                                 modifier =
                                     Modifier
                                         .fillMaxWidth()
-                                        .padding(16.dp)
-                                        .glassSurface(MaterialTheme.shapes.extraLarge, strong = true),
+                                        .padding(16.dp),
                                 colors =
                                     CardDefaults.cardColors(
-                                        containerColor =
-                                            if (LocalGlassTokens.current.enabled) {
-                                                Color.Transparent
-                                            } else {
-                                                MaterialTheme.colorScheme.surfaceVariant
-                                            },
+                                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
                                     ),
                             ) {
                                 Box(

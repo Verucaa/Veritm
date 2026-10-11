@@ -40,7 +40,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.veritm.music.ui.theme.LocalGlassTokens
 
 val LocalMenuState = compositionLocalOf { MenuState() }
 
@@ -126,12 +125,7 @@ fun BottomSheetMenu(
 ) {
     val focusManager = LocalFocusManager.current
     val sheetState = rememberMaterialBottomSheetState(initialValue = SheetValue.Hidden)
-    val containerColor =
-        if (LocalGlassTokens.current.enabled) {
-            MaterialTheme.colorScheme.surface.copy(alpha = 0.92f)
-        } else {
-            background
-        }
+    val containerColor = background
 
     AnimatedBottomSheet(
         isVisible = state.isVisible,

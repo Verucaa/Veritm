@@ -65,7 +65,6 @@ import com.veritm.music.lyrics.LyricsEntry
 import com.veritm.music.lyrics.WordTimestamp
 import com.veritm.music.playback.PlayerConnection
 import com.veritm.music.ui.screens.settings.LyricsPosition
-import com.veritm.music.ui.theme.glassSurface
 import kotlinx.coroutines.isActive
 import kotlin.math.abs
 import kotlin.math.cos
@@ -154,7 +153,7 @@ internal fun LyricsLine(
         .clip(RoundedCornerShape(8.dp))
         .then(
             if (isActiveLine && !item.isBackground) {
-                Modifier.glassSurface(RoundedCornerShape(8.dp))
+                Modifier.background(MaterialTheme.colorScheme.surfaceContainerHighest, RoundedCornerShape(8.dp))
             } else {
                 Modifier
             },
