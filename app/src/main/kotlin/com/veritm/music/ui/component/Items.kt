@@ -937,6 +937,15 @@ fun PlaylistListItem(
             thumbnails = playlist.thumbnails,
             size = ListThumbnailSize,
             placeHolder = {
+                val isSmartCollection =
+                    autoPlaylist ||
+                        playlist.playlist.name in
+                            listOf(
+                                stringResource(R.string.liked),
+                                stringResource(R.string.offline),
+                                stringResource(R.string.cached_playlist),
+                                stringResource(R.string.uploaded_playlist),
+                            )
                 val painter = when (playlist.playlist.name) {
                     stringResource(R.string.liked) -> R.drawable.favorite_border
                     stringResource(R.string.offline) -> R.drawable.offline
@@ -948,7 +957,8 @@ fun PlaylistListItem(
                 Icon(
                     painter = painterResource(painter),
                     contentDescription = null,
-                    tint = LocalContentColor.current.copy(alpha = 0.8f),
+                    tint = if (isSmartCollection) MaterialTheme.colorScheme.primary
+                           else LocalContentColor.current.copy(alpha = 0.8f),
                     modifier = Modifier.size(ListThumbnailSize / 2)
                 )
             },
@@ -1037,6 +1047,15 @@ fun PlaylistGridItem(
             thumbnails = playlist.thumbnails,
             size = width,
             placeHolder = {
+                val isSmartCollection =
+                    autoPlaylist ||
+                        playlist.playlist.name in
+                            listOf(
+                                stringResource(R.string.liked),
+                                stringResource(R.string.offline),
+                                stringResource(R.string.cached_playlist),
+                                stringResource(R.string.uploaded_playlist),
+                            )
                 val painter = when (playlist.playlist.name) {
                     stringResource(R.string.liked) -> R.drawable.favorite_border
                     stringResource(R.string.offline) -> R.drawable.offline
@@ -1052,7 +1071,8 @@ fun PlaylistGridItem(
                     Icon(
                         painter = painterResource(painter),
                         contentDescription = null,
-                        tint = LocalContentColor.current.copy(alpha = 0.8f),
+                        tint = if (isSmartCollection) MaterialTheme.colorScheme.primary
+                               else LocalContentColor.current.copy(alpha = 0.8f),
                         modifier = Modifier.size(width / 2)
                     )
                 }
