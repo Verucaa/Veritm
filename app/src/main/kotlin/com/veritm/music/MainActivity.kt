@@ -1073,14 +1073,24 @@ class MainActivity : FragmentActivity() {
                                     TopAppBar(
                                         title = {
                                             if (navBackStackEntry?.destination?.route == Screens.Home.route) {
-                                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                                    Icon(
-                                                        painter = painterResource(R.drawable.app_logo),
-                                                        contentDescription = null,
-                                                        tint = MaterialTheme.colorScheme.primary,
-                                                        modifier = Modifier.size(22.dp),
+                                                Column {
+                                                    val hour =
+                                                        remember {
+                                                            java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
+                                                        }
+                                                    Text(
+                                                        text =
+                                                            stringResource(
+                                                                when (hour) {
+                                                                    in 5..11 -> R.string.greeting_morning
+                                                                    in 12..16 -> R.string.greeting_afternoon
+                                                                    in 17..20 -> R.string.greeting_evening
+                                                                    else -> R.string.greeting_night
+                                                                },
+                                                            ),
+                                                        style = MaterialTheme.typography.labelMedium,
+                                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                                     )
-                                                    Spacer(Modifier.width(6.dp))
                                                     Text(
                                                         text = stringResource(R.string.app_name),
                                                         style = MaterialTheme.typography.titleLarge,
