@@ -17,7 +17,24 @@ dependencyResolutionManagement {
     repositories {
         exclusiveContent {
             forRepository {
-                if (useMavenLocalInnerTubeX) mavenLocal() else maven("https://jitpack.io")
+                if (useMavenLocalInnerTubeX) {
+                    mavenLocal()
+                } else {
+                    // PERBAIKAN: Abaikan file .module dari JitPack yang rusak.
+                    // JitPack mempublikasikan innertubex sebagai KMP dengan metadata
+                    // Gradle Module Metadata yang tidak lengkap, sehingga Gradle
+                    // memilih varian iosArm64/iosSimulatorArm64 alih-alih androidJvm.
+                    // Dengan metadataSources { mavenPom(); artifact() }, kita
+                    // memaksa resolusi gaya Maven klasik (POM + AAR).
+                    maven {
+                        url = uri("https://jitpack.io")
+                        metadataSources {
+                            mavenPom()
+                            artifact()
+                            ignoreGradleMetadataRedirection()
+                        }
+                    }
+                }
             }
             filter {
                 if (useMavenLocalInnerTubeX) {
@@ -34,27 +51,9 @@ dependencyResolutionManagement {
         maven { setUrl("https://jitpack.io") }
         maven { setUrl("https://maven.aliyun.com/repository/public") }
     }
-
-    // PERBAIKAN: Paksa resolusi varian androidJvm untuk dependensi KMP
-    // Ini diperlukan karena JitPack mempublikasikan banyak varian (native, jvm, dll.)
-    // dan Gradle tidak bisa memilih varian yang tepat secara otomatis.
-    resolutionStrategy.dependencySubstitution {
-        // Tidak ada substitusi, kita hanya menambahkan atribut resolusi
-    }
-
-    // Strategi resolusi untuk semua konfigurasi
-    configurations.all {
-        attributes {
-            // Paksa platform type ke androidJvm untuk semua resolusi dependensi
-            // Ini memastikan Gradle memilih varian androidJvm dari innertubex
-            attribute(
-                Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java),
-                "androidJvm"
-            )
-        }
-    }
 }
 
+// F-Droid doesn't support foojay-resolver plugin
 rootProject.name = "VERITM"
 include(":app")
 include(":innertube")
