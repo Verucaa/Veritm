@@ -1189,6 +1189,10 @@ fun HomeScreen(
                 state = lazylistState,
                 contentPadding = LocalPlayerAwareWindowInsets.current.asPaddingValues(),
             ) {
+                item(key = "greeting") {
+                    HomeGreetingHeader()
+                }
+
                 item {
                     ChipsRow(
                         chips = homePage?.chips?.map { it to it.title } ?: emptyList(),
@@ -2610,4 +2614,29 @@ fun HomeScreen(
             )
         }
     }
+}
+
+
+@Composable
+private fun HomeGreetingHeader() {
+    val hour =
+        remember {
+            java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
+        }
+    val greeting =
+        stringResource(
+            when (hour) {
+                in 5..11 -> R.string.greeting_morning
+                in 12..16 -> R.string.greeting_afternoon
+                in 17..20 -> R.string.greeting_evening
+                else -> R.string.greeting_night
+            },
+        )
+    Text(
+        text = greeting,
+        style = MaterialTheme.typography.headlineSmall,
+        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+        color = MaterialTheme.colorScheme.onBackground,
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
+    )
 }
