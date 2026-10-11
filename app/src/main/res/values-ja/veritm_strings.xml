@@ -688,7 +688,7 @@
     <string name="recognition_notification_processing">認識中…</string>
     <string name="recognition_notification_no_match">一致する曲が見つかりませんでした</string>
     <string name="recognition_notification_failed">認識に失敗しました</string>
-    <string name="listen_on_metrolist">Metrolistで聴く</string>
+    <string name="listen_on_veritm">Metrolistで聴く</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">表示する項目</string>
     <string name="android_auto_reorder_hint">項目をタップするとオン/オフを切り替えられます。長押しで並び替えができます。先頭の項目がデフォルトで表示されます</string>

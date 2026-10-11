@@ -764,7 +764,7 @@
     <string name="recognition_notification_processing">กำลังระบุเพลง…</string>
     <string name="recognition_notification_no_match">ไม่พบผลลัพธ์ที่ตรงกัน</string>
     <string name="recognition_notification_failed">ระบุเพลงไม่สำเร็จ</string>
-    <string name="listen_on_metrolist">ฟังบน Metrolist</string>
+    <string name="listen_on_veritm">ฟังบน Metrolist</string>
     <string name="pin">ปักหมุด</string>
     <string name="unpin">เลิกปักหมุด</string>
     <string name="and">และ</string>

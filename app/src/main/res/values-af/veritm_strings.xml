@@ -541,7 +541,7 @@
     <string name="recognition_notification_processing">Besig om te identifiseer…</string>
     <string name="recognition_notification_no_match">Geen passing gevind nie</string>
     <string name="recognition_notification_failed">Herkenning het misluk</string>
-    <string name="listen_on_metrolist">Luister op Metrolist</string>
+    <string name="listen_on_veritm">Luister op Metrolist</string>
     <string name="map_csv_columns">Karteer CSV-kolomme</string>
     <string name="first_row_is_header">Eerste ry is koptekst</string>
     <string name="artist_name_column">Kunstenaarnaam-kolom</string>

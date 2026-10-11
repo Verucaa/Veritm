@@ -717,7 +717,7 @@
     <string name="recognition_notification_processing">Identifikuji…</string>
     <string name="recognition_notification_no_match">Nenalezena žádná shoda</string>
     <string name="recognition_notification_failed">Rozpoznávání selhalo</string>
-    <string name="listen_on_metrolist">Přehrát v Metrolistu</string>
+    <string name="listen_on_veritm">Přehrát v Metrolistu</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Viditelné sekce</string>
     <string name="android_auto_reorder_hint">Klepněte na sekci pro její povolení nebo zakázání.\nPodržte posuvník pro změnu pořadí. První sekce bude ve výchozím nastavení zobrazena</string>

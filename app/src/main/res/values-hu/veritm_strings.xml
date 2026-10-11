@@ -704,7 +704,7 @@
     <string name="recognition_notification_processing">Azonosítás…</string>
     <string name="recognition_notification_no_match">Nincs találat</string>
     <string name="recognition_notification_failed">Felismerés sikertelen</string>
-    <string name="listen_on_metrolist">Meghallgatás Metrolist-en</string>
+    <string name="listen_on_veritm">Meghallgatás Metrolist-en</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Látható részek</string>
     <string name="android_auto_reorder_hint">Koppintson egy szakaszra az engedélyezéséhez vagy letiltásához.\nNyomja meg hosszan a fogót az átrendezéshez. Alapértelmezés szerint az első szakasz jelenik meg</string>

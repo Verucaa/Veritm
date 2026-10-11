@@ -670,7 +670,7 @@
     <string name="android_auto_reorder_hint">Bir bölümü etkinleştirmek veya devre dışı bırakmak için o bölüme dokunun.\nSıralamayı değiştirmek için sürükleme tutamacına uzun süre basın. Varsayılan olarak ilk bölüm gösterilecektir</string>
     <string name="android_auto_visible_sections">Görünür bölümler</string>
     <string name="android_auto">Android Auto</string>
-    <string name="listen_on_metrolist">Metrolist\'te dinle</string>
+    <string name="listen_on_veritm">Metrolist\'te dinle</string>
     <string name="recognition_notification_failed">Tanıma başarısız oldu</string>
     <string name="recognition_notification_no_match">Eşleşme bulunamadı</string>
     <string name="recognition_notification_processing">Tanımlanıyor…</string>

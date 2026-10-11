@@ -713,7 +713,7 @@
     <string name="recognition_notification_processing">Определяем…</string>
     <string name="recognition_notification_no_match">Совпадений не найдено</string>
     <string name="recognition_notification_failed">Не удалось распознать</string>
-    <string name="listen_on_metrolist">Слушать в Metrolist</string>
+    <string name="listen_on_veritm">Слушать в Metrolist</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Видимые разделы</string>
     <string name="android_auto_reorder_hint">Нажмите на раздел, чтобы включить или отключить его.\nУдерживайте значок перетаскивания, чтобы изменить порядок. Первый раздел будет отображаться по умолчанию</string>

@@ -383,7 +383,7 @@
     <string name="recognition_notification_processing">Identificando…</string>
     <string name="recognition_notification_no_match">Non se atoparon coincidencias</string>
     <string name="recognition_notification_failed">Fallou o recoñecemento</string>
-    <string name="listen_on_metrolist">Escoitar en Metrolist</string>
+    <string name="listen_on_veritm">Escoitar en Metrolist</string>
     <string name="map_csv_columns">Asociar columnas do CSV</string>
     <string name="first_row_is_header">A primeira fila é o encabezado</string>
     <string name="artist_name_column">Columna do nome do artista</string>

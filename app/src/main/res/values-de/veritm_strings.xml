@@ -699,7 +699,7 @@
     <string name="recognition_notification_processing">Identifizierung…</string>
     <string name="recognition_notification_no_match">Keine Ergbnisse gefunden</string>
     <string name="recognition_notification_failed">Erkennung fehlgeschlagen</string>
-    <string name="listen_on_metrolist">Auf Metrolist hören</string>
+    <string name="listen_on_veritm">Auf Metrolist hören</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Sichtbare Sektionen</string>
     <string name="android_auto_reorder_hint">Tippen Sie auf einen Abschnitt, um ihn zu aktivieren oder zu deaktivieren.\nHalten Sie den Ziehgriff gedrückt, um die Reihenfolge zu ändern. Der erste Abschnitt wird standardmäßig angezeigt.</string>

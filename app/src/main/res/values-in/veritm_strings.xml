@@ -719,7 +719,7 @@
     <string name="recognition_notification_processing">Mengidentifikasi…</string>
     <string name="recognition_notification_no_match">Tidak ditemukan kecocokan</string>
     <string name="recognition_notification_failed">Pengenalan gagal</string>
-    <string name="listen_on_metrolist">Dengarkan di Metrolist</string>
+    <string name="listen_on_veritm">Dengarkan di Metrolist</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Bagian yang terlihat</string>
     <string name="android_auto_reorder_hint">Ketuk bagian untuk mengaktifkan atau menonaktifkannya.\nTekan lama gagang seret untuk mengurutkan ulang. Bagian pertama akan ditampilkan secara default</string>

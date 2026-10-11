@@ -749,7 +749,7 @@
     <string name="recognition_notification_processing">শনাক্ত করা হচ্ছে…</string>
     <string name="recognition_notification_no_match">কোনো মিল খুঁজে পাওয়া যায়নি</string>
     <string name="recognition_notification_failed">শনাক্তকরণ ব্যর্থ হয়েছে</string>
-    <string name="listen_on_metrolist">মেট্রোলিস্টে শুনুন</string>
+    <string name="listen_on_veritm">মেট্রোলিস্টে শুনুন</string>
     <string name="map_csv_columns">CSV কলামগুলি ম্যাপ করুন</string>
     <string name="first_row_is_header">প্রথম সারিটি হেডার</string>
     <string name="artist_name_column">শিল্পীর নামের কলাম</string>

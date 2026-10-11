@@ -685,7 +685,7 @@
     <string name="recognition_notification_processing">A identificar…</string>
     <string name="recognition_notification_no_match">A música não foi encontrada...</string>
     <string name="recognition_notification_failed">Reconhecimento falhou</string>
-    <string name="listen_on_metrolist">Ouvir no Metrolist</string>
+    <string name="listen_on_veritm">Ouvir no Metrolist</string>
     <string name="map_csv_columns">Mapear colunas de CSV</string>
     <string name="first_row_is_header">Primeiro linha como cabeçalho</string>
     <string name="artist_name_column">Coluna do nome de artista</string>

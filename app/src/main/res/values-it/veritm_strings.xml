@@ -688,7 +688,7 @@
     <string name="alarm_battery_optimization_title">Ottimizzazione della batteria</string>
     <string name="change">Modifica</string>
     <string name="ai_system_prompt">Prompt di sistema</string>
-    <string name="listen_on_metrolist">Ascolta su Metrolist</string>
+    <string name="listen_on_veritm">Ascolta su Metrolist</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Sezioni visibili</string>
     <string name="android_auto_youtube_playlists">Mostra le playlist suggerite da YouTube</string>

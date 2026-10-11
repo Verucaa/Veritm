@@ -667,7 +667,7 @@
     <string name="recognition_notification_processing">Müəyyən edilir…</string>
     <string name="recognition_notification_no_match">Uyğunluq tapılmadı</string>
     <string name="recognition_notification_failed">Tanınma uğursuz oldu</string>
-    <string name="listen_on_metrolist">Metrolist dinləyin</string>
+    <string name="listen_on_veritm">Metrolist dinləyin</string>
     <string name="map_csv_columns">CSV sütunlarını uyğunlaşdırın</string>
     <string name="first_row_is_header">Birinci sətir başlıqdı</string>
     <string name="artist_name_column">İfaçı adı sütunu</string>

@@ -626,7 +626,7 @@
     <string name="recognition_notification_processing">Разпознаване…</string>
     <string name="recognition_notification_no_match">Няма резултати</string>
     <string name="recognition_notification_failed">Разпознаването бе неуспешно</string>
-    <string name="listen_on_metrolist">Слушай в Metrolist</string>
+    <string name="listen_on_veritm">Слушай в Metrolist</string>
     <string name="map_csv_columns">Настройване на CSV колони</string>
     <string name="first_row_is_header">Първия ред е заглавен</string>
     <string name="artist_name_column">Колона с името на изпълнителя</string>

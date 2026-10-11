@@ -707,7 +707,7 @@
     <string name="recognition_notification_processing">Se identifică…</string>
     <string name="recognition_notification_no_match">Nicio potrivire găsită</string>
     <string name="recognition_notification_failed">Recunoaștere eșuată</string>
-    <string name="listen_on_metrolist">Ascultă pe Metrolist</string>
+    <string name="listen_on_veritm">Ascultă pe Metrolist</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Secțiuni vizibile</string>
     <string name="android_auto_reorder_hint">Atinge o secțiune pentru a o activa sau dezactiva.\nȚine apăsat glisorul pentru a reordona. Prima secțiune va fi afișată în mod prestabilit</string>

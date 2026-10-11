@@ -674,7 +674,7 @@
     <string name="recognition_notification_processing">Đang xác định…</string>
     <string name="recognition_notification_no_match">Không tìm thấy kết quả phù hợp</string>
     <string name="recognition_notification_failed">Không nhận dạng được</string>
-    <string name="listen_on_metrolist">Nghe trên Metrolist</string>
+    <string name="listen_on_veritm">Nghe trên Metrolist</string>
     <string name="map_csv_columns">Ánh xạ các cột CSV</string>
     <string name="first_row_is_header">Dòng đầu tiên là tiêu đề</string>
     <string name="artist_name_column">Cột Tên nghệ sĩ</string>

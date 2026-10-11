@@ -710,7 +710,7 @@
     <string name="recognition_notification_processing">Rozpoznawanie…</string>
     <string name="recognition_notification_no_match">Nie znaleziono dopasowania</string>
     <string name="recognition_notification_failed">Rozpoznawanie nie powiodło się</string>
-    <string name="listen_on_metrolist">Słuchaj na Metrolist</string>
+    <string name="listen_on_veritm">Słuchaj na Metrolist</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Widoczne sekcje</string>
     <string name="android_auto_reorder_hint">Dotknij sekcji aby ją włączyć lub wyłączyć\nPrzytrzymaj ikonę przeciągania aby zmienić kolejność. Domyślnie wyświetlana będzie pierwsza sekcja</string>

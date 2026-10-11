@@ -749,7 +749,7 @@
     <string name="recognition_notification_processing">Identificando…</string>
     <string name="recognition_notification_no_match">Sin coincidencias</string>
     <string name="recognition_notification_failed">Reconocimiento fallido</string>
-    <string name="listen_on_metrolist">Escuchar en Metrolist</string>
+    <string name="listen_on_veritm">Escuchar en Metrolist</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">Secciones visibles</string>
     <string name="android_auto_reorder_hint">Toca una sección para habilitarla o deshabilitarla\nMantén presionado el control de arrastre para reordenar. La primera sección se mostrará por defecto</string>

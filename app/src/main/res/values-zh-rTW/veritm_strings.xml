@@ -660,7 +660,7 @@
     <string name="recognition_notification_listening">正在識別歌曲…</string>
     <string name="recognition_notification_processing">識別中…</string>
     <string name="recognition_notification_failed">識別失敗</string>
-    <string name="listen_on_metrolist">在 Metrolist 收聽</string>
+    <string name="listen_on_veritm">在 Metrolist 收聽</string>
     <string name="android_auto">Android Auto</string>
     <string name="android_auto_visible_sections">部分可見</string>
     <string name="android_auto_reorder_hint">點擊某個版塊即可啟用或停用它…\n長按拖曳手把可重新排序。預設會顯示第一部分</string>
