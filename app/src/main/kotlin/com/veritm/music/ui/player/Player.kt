@@ -1561,7 +1561,6 @@ fun BottomSheetPlayer(
                                 Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = PlayerHorizontalPadding)
-                                    .background(MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(24.dp))
                                     .padding(vertical = 6.dp),
                         ) {
                             val backInteractionSource = remember { MutableInteractionSource() }
@@ -1630,8 +1629,8 @@ fun BottomSheetPlayer(
                                 interactionSource = backInteractionSource,
                                 colors =
                                     IconButtonDefaults.filledIconButtonColors(
-                                        containerColor = sideButtonContainerColor,
-                                        contentColor = sideButtonContentColor,
+                                        containerColor = Color.Transparent,
+                                        contentColor = TextBackgroundColor,
                                     ),
                                 modifier =
                                     Modifier
@@ -1670,8 +1669,8 @@ fun BottomSheetPlayer(
                                 interactionSource = playPauseInteractionSource,
                                 colors =
                                     IconButtonDefaults.filledIconButtonColors(
-                                        containerColor = textButtonColor,
-                                        contentColor = iconButtonColor,
+                                        containerColor = Color.Transparent,
+                                        contentColor = TextBackgroundColor,
                                     ),
                                 modifier =
                                     Modifier
@@ -1722,8 +1721,8 @@ fun BottomSheetPlayer(
                                 interactionSource = nextInteractionSource,
                                 colors =
                                     IconButtonDefaults.filledIconButtonColors(
-                                        containerColor = sideButtonContainerColor,
-                                        contentColor = sideButtonContentColor,
+                                        containerColor = Color.Transparent,
+                                        contentColor = TextBackgroundColor,
                                     ),
                                 modifier =
                                     Modifier

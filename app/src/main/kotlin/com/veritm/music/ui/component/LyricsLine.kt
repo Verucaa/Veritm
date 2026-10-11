@@ -151,13 +151,6 @@ internal fun LyricsLine(
         .fillMaxWidth()
         .onSizeChanged { onSizeChanged(it.height) }
         .clip(RoundedCornerShape(8.dp))
-        .then(
-            if (isActiveLine && !item.isBackground) {
-                Modifier.background(MaterialTheme.colorScheme.surfaceContainerHighest, RoundedCornerShape(8.dp))
-            } else {
-                Modifier
-            },
-        )
         .combinedClickable(
             onClick = onClick,
             onLongClick = onLongClick
