@@ -132,9 +132,26 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Restore Persistent Keystore
+      # Generate a fresh debug keystore on the runner. This must match the
+      # `signingConfigs.debug` block in app/build.gradle.kts (alias, store
+      # password, key password). Using keytool here is more robust than
+      # restoring a base64 secret, which silently produces an empty (0-byte)
+      # keystore when the secret is not set, and later fails at
+      # :app:packageGmsDebug with:
+      #   KeytoolException: Tag number over 30 is not supported
+      - name: Generate Debug Keystore
         run: |
-          echo "${{ secrets.DEBUG_KEYSTORE }}" | base64 -d > ./app/persistent-debug.keystore
+          rm -f ./app/persistent-debug.keystore
+          keytool -genkeypair -v \
+            -keystore ./app/persistent-debug.keystore \
+            -storepass android \
+            -keypass android \
+            -alias androiddebugkey \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
+          ls -l ./app/persistent-debug.keystore
 
       # Lint is intentionally not run in CI: it never gated a merge and added
       # several minutes to every build. Run :app:lintGmsRelease locally.
