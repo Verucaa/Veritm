@@ -17,6 +17,7 @@ import androidx.compose.animation.shrinkOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -54,6 +55,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vmusic.music.R
 import com.vmusic.music.ui.screens.OptionStats
+import com.vmusic.music.ui.theme.LocalGlassTokens
 
 @Composable
 fun <E> ChipsRow(
@@ -63,6 +65,9 @@ fun <E> ChipsRow(
     modifier: Modifier = Modifier,
     containerColor: Color = MaterialTheme.colorScheme.surfaceContainer,
 ) {
+    val glassTokens = LocalGlassTokens.current
+    val chipContainer = if (glassTokens.enabled) glassTokens.fillStrong else containerColor
+    val chipBorder: BorderStroke? = if (glassTokens.enabled) BorderStroke(1.dp, glassTokens.border) else null
     Row(
         modifier =
         modifier
@@ -77,11 +82,11 @@ fun <E> ChipsRow(
                 label = { Text(label) },
                 selected = currentValue == value,
                 colors = FilterChipDefaults.filterChipColors(
-                    containerColor = containerColor,
+                    containerColor = chipContainer,
                 ),
                 onClick = { onValueUpdate(value) },
                 shape = RoundedCornerShape(16.dp),
-                border = null
+                border = chipBorder
             )
 
             Spacer(Modifier.width(8.dp))
@@ -101,6 +106,9 @@ fun <Int> ChoiceChipsRow(
     modifier: Modifier = Modifier,
     containerColor: Color = MaterialTheme.colorScheme.surfaceContainer,
 ) {
+    val glassTokens = LocalGlassTokens.current
+    val chipContainer = if (glassTokens.enabled) glassTokens.fillStrong else containerColor
+    val chipBorder: BorderStroke? = if (glassTokens.enabled) BorderStroke(1.dp, glassTokens.border) else null
     var expandIconDegree by remember { mutableFloatStateOf(0f) }
     val rotationAnimation by animateFloatAsState(
         targetValue = expandIconDegree,
@@ -142,9 +150,9 @@ fun <Int> ChoiceChipsRow(
                     )
                 },
                 shape = RoundedCornerShape(16.dp),
-                border = null,
+                border = chipBorder,
                 colors = AssistChipDefaults.assistChipColors(
-                    containerColor = containerColor,
+                    containerColor = chipContainer,
                     labelColor = MaterialTheme.colorScheme.onSurface
                 )
             )
@@ -195,11 +203,11 @@ fun <Int> ChoiceChipsRow(
                         label = { Text(label) },
                         selected = currentValue == value,
                         colors = FilterChipDefaults.filterChipColors(
-                            containerColor = containerColor,
+                            containerColor = chipContainer,
                         ),
                         onClick = { onValueUpdate(value) },
                         shape = RoundedCornerShape(16.dp),
-                        border = null
+                        border = chipBorder
                     )
                 }
             }

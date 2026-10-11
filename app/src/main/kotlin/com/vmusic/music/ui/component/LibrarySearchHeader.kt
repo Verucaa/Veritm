@@ -8,6 +8,7 @@ package com.vmusic.music.ui.component
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
@@ -28,7 +29,9 @@ import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.unit.dp
 import com.vmusic.music.R
+import com.vmusic.music.ui.theme.glassSurface
 
 @Composable
 fun LibrarySearchHeader(
@@ -51,7 +54,11 @@ fun LibrarySearchHeader(
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxWidth(),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .glassSurface(MaterialTheme.shapes.extraLarge)
+                .padding(horizontal = 12.dp, vertical = 4.dp),
     ) {
         if (isSearchActive) {
             TextField(
