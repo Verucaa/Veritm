@@ -487,6 +487,24 @@ private fun NewMiniPlayer(
                 )
                 }
             }
+
+            // Thin linear progress bar pinned to the pill bottom
+            Box(
+                modifier =
+                    Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp, vertical = 6.dp)
+                        .height(2.dp)
+                        .clip(RoundedCornerShape(1.dp))
+                        .drawWithContent {
+                            drawRect(color = outlineColor.copy(alpha = 0.2f))
+                            drawRect(
+                                color = primaryColor,
+                                size = Size(size.width * progressState.progress, size.height),
+                            )
+                        },
+            )
         }
     }
 }
