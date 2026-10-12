@@ -59,6 +59,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import com.veritm.music.ui.component.EqualizerLoader
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -690,7 +693,7 @@ fun BottomSheetPlayer(
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         if (isAtDefault) {
-                            FilledIconButton(
+                            Button(
                                 onClick = {
                                     scope.launch {
                                         context.safeDataStoreEdit { settings ->
@@ -703,15 +706,11 @@ fun BottomSheetPlayer(
                                         Toast.LENGTH_SHORT,
                                     ).show()
                                 },
-                                colors = IconButtonDefaults.filledIconButtonColors(
-                                    containerColor = MaterialTheme.colorScheme.primary,
-                                    contentColor = MaterialTheme.colorScheme.onPrimary,
-                                ),
                             ) {
                                 Text(stringResource(R.string.set_as_default))
                             }
                         } else {
-                            OutlinedIconButton(
+                            OutlinedButton(
                                 onClick = {
                                     scope.launch {
                                         context.safeDataStoreEdit { settings ->
@@ -724,7 +723,7 @@ fun BottomSheetPlayer(
                                         Toast.LENGTH_SHORT,
                                     ).show()
                                 },
-                                colors = IconButtonDefaults.outlinedIconButtonColors(
+                                colors = ButtonDefaults.outlinedButtonColors(
                                     contentColor = MaterialTheme.colorScheme.onSurface,
                                 ),
                                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
@@ -733,12 +732,12 @@ fun BottomSheetPlayer(
                             }
                         }
 
-                        OutlinedIconButton(
+                        OutlinedButton(
                             onClick = {
                                 showSleepTimerDialog = false
                                 playerConnection.service.sleepTimer?.start(minute = -1)
                             },
-                            colors = IconButtonDefaults.outlinedIconButtonColors(
+                            colors = ButtonDefaults.outlinedButtonColors(
                                 contentColor = MaterialTheme.colorScheme.onSurface,
                             ),
                             border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
