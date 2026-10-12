@@ -36,10 +36,9 @@ fun ConclusionPage(onClose: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = R.drawable.ic_launcher_veritm),
                 contentDescription = stringResource(R.string.wrapped_logo_content_description),
                 modifier = Modifier.size(96.dp),
-                tint = Color.White
             )
             Spacer(modifier = Modifier.height(24.dp))
             Text(
