@@ -103,24 +103,23 @@ private data class CommunityLink(
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 private val leadDeveloper = Contributor(
-    name = "Mo Agamy",
+    name = "Verucaa",
     roleRes = R.string.credits_lead_developer,
-    githubHandle = "mostafaalagamy",
+    githubHandle = "Verucaa",
     polygon = MaterialShapes.Cookie9Sided,
     favoriteSongVideoId = "Mh2JWGWvy_Y"
 )
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 private val collaborators = listOf(
-    Contributor(name = "Adriel O'Connel", roleRes = R.string.credits_collaborator, githubHandle = "adrielGGmotion", sponsorUrl = "https://github.com/sponsors/adrielGGmotion", polygon = MaterialShapes.Cookie4Sided, favoriteSongVideoId = "m2zUrruKjDQ"),
-    Contributor(name = "Nyx", roleRes = R.string.credits_collaborator, githubHandle = "nyxiereal", sponsorUrl = "https://github.com/sponsors/nyxiereal", polygon = MaterialShapes.Cookie12Sided, favoriteSongVideoId = "zselaN6zPXw"),
+    Contributor(name = "Verucaa", roleRes = R.string.credits_collaborator, githubHandle = "Verucaa", sponsorUrl = "https://github.com/sponsors/Verucaa", polygon = MaterialShapes.Cookie4Sided, favoriteSongVideoId = "m2zUrruKjDQ"),
 )
 
 private val communityLinks = listOf(
-    CommunityLink(R.string.credits_website, R.drawable.language, "https://example.com"),
-    CommunityLink(R.string.credits_view_repo, R.drawable.github, "https://github.com/VeruProject/VERITM"),
+    CommunityLink(R.string.credits_website, R.drawable.language, "https://veruproject.qzz.io"),
+    CommunityLink(R.string.credits_view_repo, R.drawable.github, "https://github.com/Verucaa/Veritm"),
     CommunityLink(R.string.credits_whatsapp, R.drawable.whatsapp, "https://example.com"),
-    CommunityLink(R.string.credits_license_name, R.drawable.info, "https://github.com/VeruProject/VERITM/blob/main/LICENSE")
+    CommunityLink(R.string.credits_license_name, R.drawable.info, "https://github.com/Verucaa/Veritm/blob/main/LICENSE")
 )
 
 private fun handleEasterEggClick(
@@ -191,19 +190,19 @@ private fun DeveloperSocials(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         FilledTonalButton(
-            onClick = { uriHandler.openUri("https://metrolist.cc") },
+            onClick = { uriHandler.openUri("https://veritm.veruproject.qzz.io") },
             modifier = Modifier.weight(1f).height(48.dp)
         ) {
             Icon(painterResource(R.drawable.language), contentDescription = null)
         }
         FilledTonalButton(
-            onClick = { uriHandler.openUri("https://github.com/mostafaalagamy") },
+            onClick = { uriHandler.openUri("https://github.com/Verucaa") },
             modifier = Modifier.weight(1f).height(48.dp)
         ) {
             Icon(painterResource(R.drawable.github), contentDescription = null)
         }
         FilledTonalButton(
-            onClick = { uriHandler.openUri("https://www.instagram.com/mostafaalagamy") },
+            onClick = { uriHandler.openUri("https://www.instagram.com/") },
             modifier = Modifier.weight(1f).height(48.dp)
         ) {
             Icon(painterResource(R.drawable.instagram), contentDescription = null)
@@ -390,7 +389,7 @@ fun AboutScreen(
                 Spacer(Modifier.height(16.dp))
                 
                 Button(
-                    onClick = { uriHandler.openUri("https://saweria.co/") },
+                    onClick = { uriHandler.openUri("https://saweria.co/Verucaa") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = CircleShape,
                     colors = ButtonDefaults.buttonColors(
