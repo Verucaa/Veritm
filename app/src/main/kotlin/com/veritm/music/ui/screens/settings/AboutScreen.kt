@@ -116,9 +116,9 @@ private val collaborators = listOf(
 )
 
 private val communityLinks = listOf(
-    CommunityLink(R.string.credits_website, R.drawable.language, "https://veruproject.qzz.io"),
+    CommunityLink(R.string.credits_website, R.drawable.language, "https://veritm.veru.qzz.io"),
     CommunityLink(R.string.credits_view_repo, R.drawable.github, "https://github.com/Verucaa/Veritm"),
-    CommunityLink(R.string.credits_whatsapp, R.drawable.whatsapp, "https://example.com"),
+    CommunityLink(R.string.credits_whatsapp, R.drawable.whatsapp, "https://whatsapp.com/channel/0029VbDmfahEKyZ86PBeBF1T"),
     CommunityLink(R.string.credits_license_name, R.drawable.info, "https://github.com/Verucaa/Veritm/blob/main/LICENSE")
 )
 
@@ -190,7 +190,7 @@ private fun DeveloperSocials(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         FilledTonalButton(
-            onClick = { uriHandler.openUri("https://veritm.veruproject.qzz.io") },
+            onClick = { uriHandler.openUri("https://veritm.veru.qzz.io") },
             modifier = Modifier.weight(1f).height(48.dp)
         ) {
             Icon(painterResource(R.drawable.language), contentDescription = null)
