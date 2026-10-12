@@ -1,17 +1,17 @@
 <div align="center">
 
-<img src="fastlane/metadata/android/en-US/images/icon.png" alt="VERITM app icon" width="200" />
+<img src="assets/logo-veritm.png" alt="VERITM app icon" width="200" />
 
 # VERITM
 
 ### YouTube Music client for Android
 
-A dark, Spotify-styled fork of [Metrolist](https://github.com/MetrolistGroup/Metrolist). Dark by default, a green accent theme, and no Discord integration.
+A dark, Spotify-styled fork of [Metrolist](https://github.com/Verucaa/Veritm). Dark by default, a green accent theme, and no Discord integration.
 
 <br/>
 
-[![License](https://img.shields.io/github/license/VeruProject/VERITM?style=for-the-badge&labelColor=0d1117)](https://github.com/VeruProject/VERITM/blob/main/LICENSE)
-[![Latest release](https://img.shields.io/github/v/release/VeruProject/VERITM?style=for-the-badge&labelColor=0d1117)](https://github.com/VeruProject/VERITM/releases)
+[![License](https://img.shields.io/github/license/VeruProject/VERITM?style=for-the-badge&labelColor=0d1117)](https://github.com/Verucaa/Veritm/blob/main/LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/VeruProject/VERITM?style=for-the-badge&labelColor=0d1117)](https://github.com/Verucaa/Veritm/releases)
 
 <br/>
 
