@@ -2441,6 +2441,3 @@ private fun PlayerExtraButton(
         )
     }
 }
-    val castIsPlaying by castHandler?.castIsPlaying?.collectAsState() ?: remember { mutableStateOf(false) }
-    val castVolume by castHandler?.castVolume?.collectAsStateWithLifecycle() ?: remember { mutableFloatStateOf(1f) }
-    val playerVolume by playerConnection.service.playerVolume.collectAsStateWithLifecycle()
