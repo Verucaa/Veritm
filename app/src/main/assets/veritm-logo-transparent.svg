@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Veritm logo — transparent vector</title>
+  <desc id="desc">A close vector recreation of the supplied Veritm icon, with its layered white and translucent blue ribbon symbol. Background is transparent.</desc>
+  <defs>
+    <linearGradient id="whiteFace" x1="118" y1="62" x2="345" y2="354" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset=".55" stop-color="#F8FCFF"/>
+      <stop offset="1" stop-color="#DCEFFF"/>
+    </linearGradient>
+    <linearGradient id="whiteSide" x1="105" y1="155" x2="220" y2="365" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FCFF"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="blueGlass" x1="170" y1="105" x2="340" y2="365" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D9EEFF" stop-opacity=".95"/>
+      <stop offset=".52" stop-color="#A8D8FF" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#D4EBFF" stop-opacity=".82"/>
+    </linearGradient>
+    <linearGradient id="blueShadow" x1="205" y1="255" x2="355" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A5D6FF" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#E8F6FF" stop-opacity=".85"/>
+    </linearGradient>
+    <linearGradient id="highlight" x1="130" y1="80" x2="320" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Back translucent folded surface -->
+  <path id="back-fold" d="
+    M106 145
+    C106 104 137 72 174 70
+    C195 69 215 77 235 88
+    L365 164
+    C386 176 401 190 411 208
+    L292 140
+    C267 126 245 130 226 145
+    C205 162 187 184 171 208
+    L106 306
+    Z" fill="url(#blueGlass)"/>
+
+  <!-- Main outer ribbon, matching the broad white sweep -->
+  <path id="outer-ribbon" d="
+    M106 145
+    C106 104 137 72 174 70
+    C196 69 215 77 235 88
+    L365 164
+    C397 183 421 210 425 239
+    C430 271 414 296 390 313
+    L350 341
+    C372 322 381 302 379 282
+    C377 262 364 246 345 235
+    L184 143
+    C164 131 145 132 129 143
+    C114 153 106 169 106 190
+    Z" fill="url(#whiteFace)"/>
+
+  <!-- Left vertical white ribbon face -->
+  <path id="left-ribbon" d="
+    M106 145
+    C106 169 106 190 106 214
+    L106 326
+    C106 349 119 367 140 379
+    L176 400
+    L176 270
+    C176 240 184 214 202 190
+    C219 168 241 151 265 138
+    L292 123
+    C268 107 246 105 226 117
+    C202 132 180 154 161 181
+    L106 260
+    Z" fill="url(#whiteSide)"/>
+
+  <!-- Central translucent fold: visible blue inner plane -->
+  <path id="inner-blue-fold" d="
+    M176 270
+    C176 240 184 214 202 190
+    C219 168 241 151 265 138
+    L292 123
+    L292 235
+    C292 259 280 280 260 294
+    L176 354
+    Z" fill="url(#blueGlass)"/>
+
+  <!-- Main upright white strip and rounded lower turn -->
+  <path id="center-ribbon" d="
+    M292 123
+    L292 287
+    C292 316 278 341 255 357
+    C230 374 198 385 176 400
+    C176 400 176 350 176 326
+    C176 301 188 280 208 266
+    C229 251 253 245 274 255
+    C284 260 292 268 292 280
+    L292 123
+    Z" fill="url(#whiteFace)"/>
+
+  <!-- Inner lower white loop -->
+  <path id="lower-loop" d="
+    M274 255
+    C251 244 225 251 207 266
+    C188 282 176 304 176 328
+    L176 354
+    C176 380 196 397 220 394
+    C252 390 278 374 297 357
+    C319 337 330 309 330 280
+    L330 166
+    L292 144
+    L292 280
+    C292 300 284 318 270 329
+    C257 340 241 349 224 354
+    C211 358 201 350 201 337
+    L201 325
+    C201 306 210 291 225 281
+    C240 271 258 268 274 276
+    Z" fill="url(#whiteFace)"/>
+
+  <!-- Soft translucent underside, gives the original layered glass look -->
+  <path id="underside" d="
+    M176 354
+    L255 357
+    C278 341 292 316 292 287
+    L292 235
+    C292 259 280 280 260 294
+    L176 354
+    C176 374 190 391 211 397
+    L255 374
+    C293 354 314 322 314 282
+    L314 156
+    L330 166
+    L330 280
+    C330 309 319 337 297 357
+    C278 374 252 390 220 394
+    C196 397 176 380 176 354
+    Z" fill="url(#blueShadow)"/>
+
+  <!-- Clean white front edge of the central vertical ribbon -->
+  <path id="front-stem" d="
+    M292 123
+    L330 145
+    L330 280
+    C330 309 319 337 297 357
+    C278 374 252 390 220 394
+    C196 397 176 380 176 354
+    L176 326
+    C176 301 188 280 208 266
+    C228 252 252 245 274 255
+    C285 260 292 270 292 282
+    L292 123
+    Z" fill="url(#whiteFace)"/>
+
+  <!-- Subtle glossy highlight on the top diagonal -->
+  <path id="top-gloss" d="
+    M123 111
+    C137 87 160 80 182 91
+    L350 189
+    C367 199 380 213 385 229
+    C374 216 361 206 346 197
+    L181 103
+    C160 91 139 97 123 111
+    Z" fill="url(#highlight)" opacity=".55"/>
+</svg>
